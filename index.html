@@ -54,32 +54,21 @@
     /* ── Reset & base ───────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
 
-    /* Grain texture global */
+    /* Grain texture global — fine pore, amber-tinted */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
       z-index: 9998;
       pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' seed='3' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0.30 0.60'/%3E%3CfeFuncG type='table' tableValues='0.14 0.30'/%3E%3CfeFuncB type='table' tableValues='0.02 0.07'/%3E%3CfeFuncA type='linear' slope='0.07'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23g)'/%3E%3C/svg%3E");
       mix-blend-mode: soft-light;
     }
 
-    /* Wood grain line hint on sections */
+    /* Wood grain — SVG turbulence with low Y-frequency for horizontal streaks */
     .wood-grain {
-      background-image:
-        repeating-linear-gradient(
-          168deg,
-          transparent 0px,
-          transparent 28px,
-          rgba(180,100,0,0.025) 28px,
-          rgba(180,100,0,0.025) 29px,
-          transparent 29px,
-          transparent 58px,
-          rgba(100,50,0,0.015) 58px,
-          rgba(100,50,0,0.015) 59px
-        );
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.60 0.035' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0.22 0.52'/%3E%3CfeFuncG type='table' tableValues='0.10 0.26'/%3E%3CfeFuncB type='table' tableValues='0.01 0.05'/%3E%3CfeFuncA type='linear' slope='0.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23w)'/%3E%3C/svg%3E");
+      background-size: 500px 500px;
     }
 
     body {
