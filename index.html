@@ -54,6 +54,10 @@
     /* ── Reset & base ───────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Montserrat', system-ui, sans-serif;
       background-color: #1A1A1A;
@@ -527,8 +531,8 @@
   <div class="hero-overlay"></div>
 
   <!-- Content -->
-  <div class="relative z-10 max-w-2xl mx-auto">
-    <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.15] text-[#F5F5F0] mb-4 hero-title">
+  <div class="relative z-10 max-w-2xl mx-auto px-6">
+    <h1 class="font-display text-[2rem] sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.15] text-[#F5F5F0] mb-4 hero-title">
       O verdadeiro sabor e a tradição da Serra Gaúcha
     </h1>
     <p class="mb-6 hero-eyebrow" style="font-family:'Yesteryear',cursive; font-size:clamp(1.5rem,3.5vw,2.2rem); color:#B06500; letter-spacing:0.02em;">do RS para o MS</p>
