@@ -54,37 +54,9 @@
     /* ── Reset & base ───────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; }
 
-    /* Grain texture global */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.035;
-      mix-blend-mode: soft-light;
-    }
-
-    /* Wood grain line hint on sections */
-    .wood-grain {
-      background-image:
-        repeating-linear-gradient(
-          168deg,
-          transparent 0px,
-          transparent 28px,
-          rgba(180,100,0,0.025) 28px,
-          rgba(180,100,0,0.025) 29px,
-          transparent 29px,
-          transparent 58px,
-          rgba(100,50,0,0.015) 58px,
-          rgba(100,50,0,0.015) 59px
-        );
-    }
-
     body {
       font-family: 'Montserrat', system-ui, sans-serif;
-      background-color: #181008;
+      background-color: #1A1A1A;
       color: #F5F5F0;
       -webkit-font-smoothing: antialiased;
     }
@@ -559,7 +531,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 2 · CUTELARIA ARTESANAL
 ═══════════════════════════════════════════════════ -->
-<section id="cutelaria" class="py-28 px-6 bg-[#1C1308] wood-grain" aria-labelledby="cutelaria-title">
+<section id="cutelaria" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="cutelaria-title">
   <div class="max-w-6xl mx-auto">
     <div class="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
 
@@ -599,7 +571,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 3 · EMPÓRIO COLONIAL
 ═══════════════════════════════════════════════════ -->
-<section id="emporio" class="py-28 px-6 bg-[#1A1510] wood-grain" aria-labelledby="emporio-title">
+<section id="emporio" class="py-28 px-6 bg-[#222222]" aria-labelledby="emporio-title">
   <div class="max-w-6xl mx-auto">
     <div class="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
 
@@ -645,7 +617,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 3B · CATÁLOGO DE PRODUTOS
 ═══════════════════════════════════════════════════ -->
-<section id="catalogo" class="py-28 px-6 bg-[#161009] wood-grain" aria-labelledby="catalogo-title">
+<section id="catalogo" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="catalogo-title">
   <div class="max-w-6xl mx-auto">
 
     <!-- Heading -->
@@ -672,7 +644,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Cutelaria</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Facas Artesanais</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -694,7 +666,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Bebidas</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Licores & Cachaças</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -716,7 +688,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Naturais</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Mel Artesanal</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -738,7 +710,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Linha Premium</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Molhos & Temperos</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -760,7 +732,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Charcuterie</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Queijos & Salames</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -782,7 +754,7 @@
             loading="lazy"
           />
         </div>
-        <div class="product-body bg-[#1E1508] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
           <p class="eyebrow mb-2">Vinícola</p>
           <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Vinhos & Espumantes</h3>
           <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
@@ -812,7 +784,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 4 · EXPERIÊNCIA PADRÃO GRAMADO
 ═══════════════════════════════════════════════════ -->
-<section id="experiencia" class="py-28 px-6 bg-[#1A1308] wood-grain" aria-labelledby="exp-title">
+<section id="experiencia" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="exp-title">
   <div class="max-w-6xl mx-auto">
 
     <!-- Heading -->
@@ -906,7 +878,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 5 · STORYTELLING / RAÍZES
 ═══════════════════════════════════════════════════ -->
-<section id="raizes" class="relative py-32 px-6 bg-[#100C06] wood-grain overflow-hidden" aria-labelledby="raizes-title">
+<section id="raizes" class="relative py-32 px-6 bg-[#131313] overflow-hidden" aria-labelledby="raizes-title">
 
   <!-- Decorative watermark -->
   <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
@@ -931,7 +903,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 6 · DEPOIMENTOS / PROVA SOCIAL
 ═══════════════════════════════════════════════════ -->
-<section id="depoimentos" class="py-28 px-6 bg-[#1C1610] wood-grain" aria-labelledby="dep-title">
+<section id="depoimentos" class="py-28 px-6 bg-[#1E1E1E]" aria-labelledby="dep-title">
   <div class="max-w-6xl mx-auto">
 
     <!-- Heading -->
@@ -1031,7 +1003,7 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 7 · FOOTER / LOCALIZAÇÃO
 ═══════════════════════════════════════════════════ -->
-<footer id="localizacao" class="pt-24 pb-12 px-6 bg-[#0D0A05] wood-grain" aria-labelledby="footer-title">
+<footer id="localizacao" class="pt-24 pb-12 px-6 bg-[#111111]" aria-labelledby="footer-title">
   <div class="max-w-6xl mx-auto">
 
     <!-- Heading -->
