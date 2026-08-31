@@ -1381,59 +1381,48 @@
     const wipeEl = document.getElementById('wipe-overlay');
     if (!wipeEl) return;
 
-    const wipePaths = wipeEl.querySelectorAll('.shape-overlays__path');
-    const numPoints     = 10;
-    const numPaths      = wipePaths.length;
-    const delayPtsMax   = 0.3;
-    const delayPerPath  = 0.25;
-    let wIsOpened = false;
-    let wPtsDelay = [];
-    let wAllPts   = [];
+    const wipePaths  = wipeEl.querySelectorAll('.shape-overlays__path');
+    const NUM_PTS    = 10;
+    const NUM_PATHS  = wipePaths.length;
+    const MAX_DELAY  = 0.3;
+    const PATH_DELAY = 0.25;
 
-    const wTl = gsap.timeline({
-      onUpdate: wRender,
-      defaults: { ease: 'power2.inOut', duration: 0.9 },
-      paused: true,
-    });
-
-    for (let i = 0; i < numPaths; i++) {
-      const row = [];
-      wAllPts.push(row);
-      for (let j = 0; j < numPoints; j++) row.push(100);
-    }
-
-    // Initial render so paths have valid `d` before shown
-    wIsOpened = true;
-    wRender();
-
-    function wToggle() {
-      wTl.progress(0).clear();
-      for (let i = 0; i < numPoints; i++) {
-        wPtsDelay[i] = Math.random() * delayPtsMax;
-      }
-      for (let i = 0; i < numPaths; i++) {
-        const row = wAllPts[i];
-        const pd  = delayPerPath * (wIsOpened ? i : (numPaths - i - 1));
-        for (let j = 0; j < numPoints; j++) {
-          wTl.to(row, { [j]: 0 }, wPtsDelay[j] + pd);
-        }
-      }
-    }
+    let wIsOpened = true;
+    const wAllPts = Array.from({ length: NUM_PATHS }, () => new Array(NUM_PTS).fill(100));
 
     function wRender() {
-      for (let i = 0; i < numPaths; i++) {
-        const path = wipePaths[i];
-        const row  = wAllPts[i];
-        let d = '';
-        d += wIsOpened ? `M 0 0 V ${row[0]} C` : `M 0 ${row[0]} C`;
-        for (let j = 0; j < numPoints - 1; j++) {
-          const p  = (j + 1) / (numPoints - 1) * 100;
-          const cp = p - (1 / (numPoints - 1) * 100) / 2;
-          d += ` ${cp} ${row[j]} ${cp} ${row[j + 1]} ${p} ${row[j + 1]}`;
+      for (let i = 0; i < NUM_PATHS; i++) {
+        const pts = wAllPts[i];
+        let d = wIsOpened ? `M 0 0 V ${pts[0]} C` : `M 0 ${pts[0]} C`;
+        for (let j = 0; j < NUM_PTS - 1; j++) {
+          const p  = (j + 1) / (NUM_PTS - 1) * 100;
+          const cp = p - (1 / (NUM_PTS - 1) * 100) / 2;
+          d += ` ${cp} ${pts[j]} ${cp} ${pts[j + 1]} ${p} ${pts[j + 1]}`;
         }
         d += wIsOpened ? ` V 100 H 0` : ` V 0 H 0`;
-        path.setAttribute('d', d);
+        wipePaths[i].setAttribute('d', d);
       }
+    }
+
+    // Pre-render so paths have valid `d` attribute before shown
+    wRender();
+
+    // Fresh timeline per phase — no onUpdate (SVG render runs on gsap.ticker separately)
+    function buildPhase(isEnter, onComplete) {
+      for (let i = 0; i < NUM_PATHS; i++) wAllPts[i].fill(100);
+      wIsOpened = isEnter;
+
+      const delays = Array.from({ length: NUM_PTS }, () => Math.random() * MAX_DELAY);
+      const tl = gsap.timeline({ onComplete, defaults: { ease: 'power2.inOut', duration: 0.9 } });
+
+      for (let i = 0; i < NUM_PATHS; i++) {
+        const pts = wAllPts[i];
+        const pd  = PATH_DELAY * (isEnter ? i : NUM_PATHS - i - 1);
+        for (let j = 0; j < NUM_PTS; j++) {
+          tl.to(pts, { [j]: 0 }, delays[j] + pd);
+        }
+      }
+      return tl;
     }
 
     let wTriggered = false;
@@ -1445,20 +1434,12 @@
       onEnter: () => {
         if (wTriggered) return;
         wTriggered = true;
-
         wipeEl.style.display = 'block';
-
-        // Phase 1: Enter — waves fill screen (isOpened=true, pts 100→0)
-        wIsOpened = true;
-        wToggle();
-        wTl.play().then(() => {
-          // Phase 2: Exit — waves recede revealing empório (isOpened=false, tl.progress(0) resets pts to 100, then 100→0)
-          wIsOpened = false;
-          wToggle();
-          wTl.play().then(() => {
-            wipeEl.style.display = 'none';
-          });
-        });
+        gsap.ticker.add(wRender); // render loop tied to GSAP ticker, not timeline onUpdate
+        buildPhase(true, () => buildPhase(false, () => {
+          gsap.ticker.remove(wRender);
+          wipeEl.style.display = 'none';
+        }));
       },
     });
   })();
