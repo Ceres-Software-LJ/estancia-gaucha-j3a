@@ -435,20 +435,6 @@
                   box-shadow 0.2s ease !important;
     }
 
-    /* ── SVG Wipe Overlay (Cutelaria → Empório) ────── */
-    #wipe-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 10000;
-      pointer-events: none;
-      display: none;
-    }
-    #wipe-overlay .shape-overlays {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
 
     /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
@@ -473,23 +459,6 @@
 <!-- Scroll progress bar -->
 <div id="scroll-progress" aria-hidden="true"></div>
 
-<!-- SVG Wipe Transition (Cutelaria → Empório) -->
-<div id="wipe-overlay" aria-hidden="true">
-  <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <defs>
-      <linearGradient id="wipe-g1" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#ff8709"/>
-        <stop offset="100%" stop-color="#f7bdf8"/>
-      </linearGradient>
-      <linearGradient id="wipe-g2" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%"   stop-color="#ffd9b0"/>
-        <stop offset="100%" stop-color="#ff8709"/>
-      </linearGradient>
-    </defs>
-    <path class="shape-overlays__path" fill="url(#wipe-g2)"></path>
-    <path class="shape-overlays__path" fill="url(#wipe-g1)"></path>
-  </svg>
-</div>
 
 <!-- ═══════════════════════════════════════════════════
      HEADER
@@ -1376,73 +1345,6 @@
     });
   }
 
-  /* ── SVG Wipe Transition (Cutelaria → Empório) ──────────────────── */
-  (function () {
-    const wipeEl = document.getElementById('wipe-overlay');
-    if (!wipeEl) return;
-
-    const wipePaths  = wipeEl.querySelectorAll('.shape-overlays__path');
-    const NUM_PTS    = 10;
-    const NUM_PATHS  = wipePaths.length;
-    const MAX_DELAY  = 0.3;
-    const PATH_DELAY = 0.25;
-
-    let wIsOpened = true;
-    const wAllPts = Array.from({ length: NUM_PATHS }, () => new Array(NUM_PTS).fill(100));
-
-    function wRender() {
-      for (let i = 0; i < NUM_PATHS; i++) {
-        const pts = wAllPts[i];
-        let d = wIsOpened ? `M 0 0 V ${pts[0]} C` : `M 0 ${pts[0]} C`;
-        for (let j = 0; j < NUM_PTS - 1; j++) {
-          const p  = (j + 1) / (NUM_PTS - 1) * 100;
-          const cp = p - (1 / (NUM_PTS - 1) * 100) / 2;
-          d += ` ${cp} ${pts[j]} ${cp} ${pts[j + 1]} ${p} ${pts[j + 1]}`;
-        }
-        d += wIsOpened ? ` V 100 H 0` : ` V 0 H 0`;
-        wipePaths[i].setAttribute('d', d);
-      }
-    }
-
-    // Pre-render so paths have valid `d` attribute before shown
-    wRender();
-
-    // Fresh timeline per phase — no onUpdate (SVG render runs on gsap.ticker separately)
-    function buildPhase(isEnter, onComplete) {
-      for (let i = 0; i < NUM_PATHS; i++) wAllPts[i].fill(100);
-      wIsOpened = isEnter;
-
-      const delays = Array.from({ length: NUM_PTS }, () => Math.random() * MAX_DELAY);
-      const tl = gsap.timeline({ onComplete, defaults: { ease: 'power2.inOut', duration: 0.9 } });
-
-      for (let i = 0; i < NUM_PATHS; i++) {
-        const pts = wAllPts[i];
-        const pd  = PATH_DELAY * (isEnter ? i : NUM_PATHS - i - 1);
-        for (let j = 0; j < NUM_PTS; j++) {
-          tl.to(pts, { [j]: 0 }, delays[j] + pd);
-        }
-      }
-      return tl;
-    }
-
-    let wTriggered = false;
-
-    ScrollTrigger.create({
-      trigger: '#emporio',
-      start: 'top 80%',
-      once: true,
-      onEnter: () => {
-        if (wTriggered) return;
-        wTriggered = true;
-        wipeEl.style.display = 'block';
-        gsap.ticker.add(wRender); // render loop tied to GSAP ticker, not timeline onUpdate
-        buildPhase(true, () => buildPhase(false, () => {
-          gsap.ticker.remove(wRender);
-          wipeEl.style.display = 'none';
-        }));
-      },
-    });
-  })();
 
   /* ── 5. Product cards — stagger with subtle rotation ─────────────── */
   const productCards = gsap.utils.toArray('#catalogo .product-card');
