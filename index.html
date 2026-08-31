@@ -353,17 +353,34 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Phase 3 — Section h2 word-split */
+    /* Phase 3 — Section h2 word-split clip-path reveal */
     .word-split-done .word {
       display: inline-block;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.45s ease, transform 0.45s ease;
-      transition-delay: calc(var(--wi, 0) * 70ms);
+      clip-path: inset(0 0 110% 0);
+      transform: translateY(22px);
+      transition: clip-path 0.58s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.58s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: calc(var(--wi, 0) * 65ms);
     }
     .word-split-done.words-visible .word {
-      opacity: 1;
+      clip-path: inset(0 0 0% 0);
       transform: translateY(0);
+    }
+
+    /* Stats bar */
+    .stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      font-weight: 700;
+      color: #B06500;
+      line-height: 1;
+      display: block;
+    }
+
+    /* Knife SVG draw */
+    #knife-blade {
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
     }
 
     /* Phase 3 — Eyebrow fade-up (fora do hero) */
@@ -444,7 +461,8 @@
         opacity: 1 !important; transform: none !important;
         transition: none !important;
       }
-      .word-split-done .word { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .word-split-done .word { clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+      #knife-blade { stroke-dashoffset: 0 !important; }
       .eyebrow-anim { opacity: 1 !important; transform: none !important; }
       .reveal { transform: translateY(28px); }
       .btn-wa { animation: none !important; }
@@ -594,7 +612,7 @@
       </div>
 
       <!-- Photo grid (right on desktop) -->
-      <div class="reveal reveal-delay-1 order-1 md:order-2 grid grid-cols-2 gap-4">
+      <div id="emporio-grid" class="reveal reveal-delay-1 order-1 md:order-2 grid grid-cols-2 gap-4">
         <img
           src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=600&q=85&auto=format&fit=crop"
           alt="Queijos curados coloniais da Serra Gaúcha"
@@ -876,6 +894,36 @@
 
 
 <!-- ═══════════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════════ -->
+<div id="stats-bar" class="py-20 px-6 bg-[#161616] border-y border-[rgba(176,101,0,0.1)]">
+  <div class="max-w-3xl mx-auto grid grid-cols-3 gap-4 text-center divide-x divide-[rgba(176,101,0,0.12)]">
+    <div class="px-4">
+      <div class="flex items-end justify-center gap-0.5">
+        <span class="stat-value counter" data-target="8">0</span>
+        <span class="font-display text-3xl font-bold text-[#B06500] mb-1 leading-none">+</span>
+      </div>
+      <p class="eyebrow mt-3">Anos de Tradição</p>
+    </div>
+    <div class="px-4">
+      <div class="flex items-end justify-center gap-0.5">
+        <span class="stat-value counter" data-target="200">0</span>
+        <span class="font-display text-3xl font-bold text-[#B06500] mb-1 leading-none">+</span>
+      </div>
+      <p class="eyebrow mt-3">Produtos Selecionados</p>
+    </div>
+    <div class="px-4">
+      <div class="flex items-end justify-center">
+        <span class="stat-value">5</span>
+        <span class="text-amber-400 text-2xl mb-1 ml-1 leading-none">★</span>
+      </div>
+      <p class="eyebrow mt-3">Estrelas no Google</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
      SEÇÃO 5 · STORYTELLING / RAÍZES
 ═══════════════════════════════════════════════════ -->
 <section id="raizes" class="relative py-32 px-6 bg-[#131313] overflow-hidden" aria-labelledby="raizes-title">
@@ -895,6 +943,36 @@
     <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-base md:text-[1.05rem]">
       A J3A Estância Gaúcha nasceu do desejo de unir duas paixões: a tradição inigualável dos produtos do Rio Grande do Sul e a cultura forte e acolhedora do sul-mato-grossense. Construímos este espaço para que você se sinta em casa, reencontre suas raízes ou descubra a magia do autêntico produto colonial, bem no centro de Campo Grande.
     </p>
+  </div>
+
+  <!-- Knife blade SVG draw-on-scroll -->
+  <div class="relative z-10 flex justify-center mt-20" aria-hidden="true">
+    <svg id="knife-svg" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg"
+         style="width:min(700px,88vw); overflow:visible;">
+      <!-- blade body -->
+      <path id="knife-blade"
+        fill="none"
+        stroke="#B06500"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M 70,62
+           C 70,62 80,58 100,56
+           C 220,48 480,40 730,56
+           L 746,62
+           L 730,68
+           C 480,80 220,74 100,68
+           C 80,66 70,62 70,62 Z"
+      />
+      <!-- handle guard -->
+      <line x1="70" y1="44" x2="70" y2="80"
+            stroke="#B06500" stroke-width="2.5" stroke-linecap="round"
+            id="knife-guard" style="opacity:0"/>
+      <!-- spine decorative etch lines -->
+      <line x1="100" y1="52" x2="500" y2="44"
+            stroke="#B06500" stroke-width="0.5" stroke-linecap="round" opacity="0.3"
+            id="knife-spine" style="stroke-dasharray:400;stroke-dashoffset:400"/>
+    </svg>
   </div>
 
 </section>
@@ -1293,101 +1371,119 @@
     gsap.to(heroVideo, {
       scale: 1.14,
       ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+  }
+
+  /* ── 2. Hero text parallax depth layers ──────────────────────────── */
+  var heroST = { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true };
+  var heroTitle = document.querySelector('.hero-title');
+  var heroEye   = document.querySelector('.hero-eyebrow');
+  var heroSub   = document.querySelector('.hero-sub');
+  if (heroTitle) gsap.to(heroTitle, { yPercent: -18, ease: 'none', scrollTrigger: heroST });
+  if (heroEye)   gsap.to(heroEye,   { yPercent: -30, ease: 'none', scrollTrigger: heroST });
+  if (heroSub)   gsap.to(heroSub,   { yPercent: -44, ease: 'none', scrollTrigger: heroST });
+
+  /* ── 3. Cutelaria image parallax ─────────────────────────────────── */
+  var cutelariaImg = document.querySelector('#cutelaria .img-wrap img');
+  if (cutelariaImg) {
+    gsap.fromTo(cutelariaImg, { yPercent: -10 }, {
+      yPercent: 10, ease: 'none',
+      scrollTrigger: { trigger: '#cutelaria .img-wrap', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+
+  /* ── 4. Empório photo grid gentle parallax ───────────────────────── */
+  var emporioImgs = document.querySelectorAll('#emporio-grid img');
+  if (emporioImgs.length === 2) {
+    gsap.fromTo(emporioImgs[0], { yPercent: -8 }, {
+      yPercent: 8, ease: 'none',
+      scrollTrigger: { trigger: '#emporio-grid', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+    gsap.fromTo(emporioImgs[1], { yPercent: 8 }, {
+      yPercent: -8, ease: 'none',
+      scrollTrigger: { trigger: '#emporio-grid', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+
+  /* ── 5. Raízes watermark parallax ────────────────────────────────── */
+  var watermark = document.querySelector('#raizes .absolute');
+  if (watermark) {
+    gsap.fromTo(watermark, { yPercent: 15 }, {
+      yPercent: -25, ease: 'none',
+      scrollTrigger: { trigger: '#raizes', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+
+  /* ── 6. Knife SVG draw-on-scroll ─────────────────────────────────── */
+  var knifeBlade = document.getElementById('knife-blade');
+  var knifeSpine = document.getElementById('knife-spine');
+  var knifeGuard = document.getElementById('knife-guard');
+  if (knifeBlade) {
+    var len = knifeBlade.getTotalLength();
+    gsap.set(knifeBlade, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.to(knifeBlade, {
+      strokeDashoffset: 0,
+      ease: 'power2.inOut',
+      scrollTrigger: { trigger: '#knife-svg', start: 'top 80%', end: 'center 40%', scrub: 1.2 },
+    });
+  }
+  if (knifeSpine) {
+    gsap.to(knifeSpine, {
+      strokeDashoffset: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: '#knife-svg', start: 'top 75%', end: 'center 35%', scrub: 1.5 },
+    });
+  }
+  if (knifeGuard) {
+    ScrollTrigger.create({
+      trigger: '#knife-svg', start: 'top 78%', once: true,
+      onEnter: () => gsap.to(knifeGuard, { opacity: 0.5, duration: 0.4, ease: 'power2.out', delay: 0.1 }),
+    });
+  }
+
+  /* ── 7. Counter animation ─────────────────────────────────────────── */
+  document.querySelectorAll('.counter').forEach(function(el) {
+    var target = parseInt(el.dataset.target, 10);
+    var proxy  = { val: 0 };
+    ScrollTrigger.create({
+      trigger: '#stats-bar',
+      start: 'top 80%',
+      once: true,
+      onEnter: function() {
+        gsap.to(proxy, {
+          val: target,
+          duration: 1.8,
+          ease: 'power2.out',
+          onUpdate: function() { el.textContent = Math.round(proxy.val); },
+        });
+      },
+    });
+  });
+
+  /* ── 8. Feature cards — GSAP batch wave entrance ─────────────────── */
+  var featureCards = gsap.utils.toArray('#experiencia .feature-card');
+  if (featureCards.length) {
+    featureCards.forEach(function(el) { if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el); });
+    gsap.set(featureCards, { opacity: 0, y: 60, scale: 0.95 });
+    ScrollTrigger.batch(featureCards, {
+      start: 'top 88%', once: true,
+      onEnter: function(batch) {
+        gsap.to(batch, { opacity: 1, y: 0, scale: 1, stagger: 0.18, duration: 0.9, ease: 'power3.out', overwrite: true });
       },
     });
   }
 
-  /* ── 2. Cutelaria image parallax ─────────────────────────────────── */
-  const cutelariaImg = document.querySelector('#cutelaria .img-wrap img');
-  if (cutelariaImg) {
-    gsap.fromTo(cutelariaImg,
-      { yPercent: -10 },
-      {
-        yPercent: 10,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#cutelaria .img-wrap',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      }
-    );
-  }
-
-  /* ── 3. Raízes watermark parallax (faster = deeper feel) ─────────── */
-  const watermark = document.querySelector('#raizes .absolute');
-  if (watermark) {
-    gsap.fromTo(watermark,
-      { yPercent: 15 },
-      {
-        yPercent: -25,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#raizes',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      }
-    );
-  }
-
-  /* ── 4. Feature cards — GSAP batch wave entrance ─────────────────── */
-  const featureCards = gsap.utils.toArray('#experiencia .feature-card');
-  if (featureCards.length) {
-    // Hand off these elements from IntersectionObserver to GSAP
-    featureCards.forEach(el => {
-      if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el);
-    });
-    gsap.set(featureCards, { opacity: 0, y: 60, scale: 0.95 });
-
-    ScrollTrigger.batch(featureCards, {
-      start: 'top 88%',
-      once: true,
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          stagger: 0.18,
-          duration: 0.9,
-          ease: 'power3.out',
-          overwrite: true,
-        }),
-    });
-  }
-
-
-  /* ── 5. Product cards — stagger with subtle rotation ─────────────── */
-  const productCards = gsap.utils.toArray('#catalogo .product-card');
+  /* ── 9. Product cards — stagger with subtle rotation ─────────────── */
+  var productCards = gsap.utils.toArray('#catalogo .product-card');
   if (productCards.length) {
-    productCards.forEach(el => {
-      if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el);
-    });
+    productCards.forEach(function(el) { if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el); });
     gsap.set(productCards, { opacity: 0, y: 70, rotationX: 8, scale: 0.96, transformPerspective: 800 });
-
     ScrollTrigger.batch(productCards, {
-      start: 'top 90%',
-      batchMax: 3,
-      interval: 0.08,
-      once: true,
-      onEnter: (batch) =>
-        gsap.to(batch, {
-          opacity: 1,
-          y: 0,
-          rotationX: 0,
-          scale: 1,
-          stagger: 0.11,
-          duration: 0.75,
-          ease: 'power2.out',
-          overwrite: true,
-        }),
+      start: 'top 90%', batchMax: 3, interval: 0.08, once: true,
+      onEnter: function(batch) {
+        gsap.to(batch, { opacity: 1, y: 0, rotationX: 0, scale: 1, stagger: 0.11, duration: 0.75, ease: 'power2.out', overwrite: true });
+      },
     });
   }
 
