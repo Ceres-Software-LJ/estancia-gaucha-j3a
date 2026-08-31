@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>J3A Estância Gaúcha Cutelaria | Campo Grande – MS</title>
+  <meta name="description" content="Empório premium de cutelaria artesanal e produtos coloniais da Serra Gaúcha em Campo Grande – MS. Facas artesanais, queijos maturados, vinhos premiados e salames coloniais." />
+  <meta name="keywords" content="cutelaria artesanal, facas artesanais, produtos gaúchos, empório colonial, queijos, vinhos, Campo Grande MS, J3A Estância Gaúcha" />
+  <meta property="og:title" content="J3A Estância Gaúcha Cutelaria" />
+  <meta property="og:description" content="O verdadeiro sabor e a tradição da Serra Gaúcha no coração de Campo Grande." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            copper:        '#B06500',
+            'copper-dim':  'rgba(176,101,0,0.15)',
+            cream:         '#F5F5F0',
+            'dark-ground': '#111111',
+            'dark-base':   '#1A1A1A',
+            'dark-raised': '#242424',
+            'dark-high':   '#2E2E2E',
+            'wa':          '#20B256',
+            'wa-hover':    '#1c9c4b',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['Montserrat', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ── Reset & base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', system-ui, sans-serif;
+      background-color: #1A1A1A;
+      color: #F5F5F0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      text-wrap: balance;
+    }
+
+    /* ── Scroll animations ──────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(.22,.68,0,1.2),
+                  transform 0.75s cubic-bezier(.22,.68,0,1.2);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── Typography helpers ─────────────────────────── */
+    .eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #B06500;
+    }
+
+    /* ── Buttons ────────────────────────────────────── */
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: #20B256;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+    .btn-wa:hover { background-color: #1c9c4b; transform: translateY(-1px); }
+    .btn-wa:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: #B06500;
+      border: 1.5px solid #B06500;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.875rem 2rem;
+      border-radius: 12px;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background-color: #B06500;
+      color: #1A1A1A;
+      transform: translateY(-1px);
+    }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.55;        /* opacidade do vídeo — ajuste aqui se quiser mais/menos */
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(10,6,0,0.70) 60%,
+        rgba(26,26,26,1) 100%
+      );
+    }
+
+    /* ── Copper accent line ─────────────────────────── */
+    .copper-line {
+      width: 44px;
+      height: 2px;
+      background: #B06500;
+      margin: 0 auto 1.5rem;
+    }
+    .copper-line-left {
+      margin: 0 0 1.5rem;
+    }
+
+    /* ── Feature cards ──────────────────────────────── */
+    .feature-card {
+      background: #242424;
+      border: 1px solid rgba(176,101,0,0.12);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(176,101,0,0.35);
+    }
+
+    /* ── Testimonial cards ──────────────────────────── */
+    .testimonial-card {
+      background: #242424;
+      border: 1px solid rgba(176,101,0,0.15);
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+
+    /* ── Product catalog cards ──────────────────────── */
+    .product-card {
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .product-cta {
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B06500;
+      border-bottom: 1px solid rgba(176,101,0,0.35);
+      padding-bottom: 1px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .product-card:hover .product-cta {
+      color: #C97500;
+      border-color: #C97500;
+    }
+
+    /* ── Icon badge ─────────────────────────────────── */
+    .icon-badge {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(176,101,0,0.1);
+      border-radius: 12px;
+      margin-bottom: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Corner accents on images ───────────────────── */
+    .img-wrap { position: relative; overflow: hidden; }
+    .img-wrap::before,
+    .img-wrap::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: #B06500;
+      border-style: solid;
+      z-index: 2;
+    }
+    .img-wrap::before {
+      top: -8px; left: -8px;
+      border-width: 2px 0 0 2px;
+    }
+    .img-wrap::after {
+      bottom: -8px; right: -8px;
+      border-width: 0 2px 2px 0;
+    }
+
+    /* ── Header ─────────────────────────────────────── */
+    #site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 1.5rem;
+      transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
+    }
+    #site-header.scrolled {
+      background: rgba(17,17,17,0.92);
+      backdrop-filter: blur(10px);
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(176,101,0,0.12);
+    }
+
+    /* ── WhatsApp float ─────────────────────────────── */
+    #wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: #20B256;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 0.875rem 1.375rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 8px 28px rgba(32,178,86,0.4);
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #wa-float:hover {
+      background: #1c9c4b;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(32,178,86,0.5);
+    }
+    #wa-float:active { transform: translateY(0); }
+    #wa-float .wa-label { display: none; }
+    @media (min-width: 480px) { #wa-float .wa-label { display: inline; } }
+
+    .wa-pulse {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50px;
+      border: 1.5px solid rgba(32,178,86,0.6);
+      animation: pulse-ring 2s cubic-bezier(.455,.03,.515,.955) infinite;
+      pointer-events: none;
+    }
+    @keyframes pulse-ring {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      80%  { transform: scale(1.12); opacity: 0; }
+      100% { transform: scale(1.12); opacity: 0; }
+    }
+
+
+    /* ═══ ANIMATION SYSTEM ══════════════════════════════ */
+
+    /* Phase 1 — Header enhanced transition */
+    #site-header {
+      transition: background 0.35s ease, backdrop-filter 0.35s ease,
+                  padding 0.35s ease, box-shadow 0.35s ease;
+    }
+    #site-header.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+
+    /* Phase 2 — Hero: estado inicial dos elementos */
+    #hero .hero-eyebrow {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.5s ease 0.05s, transform 0.5s ease 0.05s;
+    }
+    #hero .hero-title {
+      opacity: 0;
+      transform: translateY(24px) scale(0.96);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+    #hero .hero-sub {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease 0.42s, transform 0.55s ease 0.42s;
+    }
+    #hero .hero-cta {
+      opacity: 0;
+      transform: translateY(16px) scale(0.94);
+      transition: opacity 0.5s cubic-bezier(.34,1.2,.64,1) 0.6s,
+                  transform 0.5s cubic-bezier(.34,1.2,.64,1) 0.6s;
+    }
+    /* Loaded: tudo aparece */
+    #hero.hero--loaded .hero-eyebrow,
+    #hero.hero--loaded .hero-title,
+    #hero.hero--loaded .hero-sub,
+    #hero.hero--loaded .hero-cta {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Phase 3 — Section h2 word-split */
+    .word-split-done .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      transition-delay: calc(var(--wi, 0) * 70ms);
+    }
+    .word-split-done.words-visible .word {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Phase 3 — Eyebrow fade-up (fora do hero) */
+    .eyebrow-anim {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .eyebrow-anim.anim-in { opacity: 1; transform: translateY(0); }
+
+    /* Phase 3 — Reveal com scale */
+    .reveal { transform: translateY(28px) scale(0.97); }
+    .reveal.visible { transform: translateY(0) scale(1); }
+
+    /* Phase 3 — Card 3D tilt */
+    .feature-card, .product-card, .testimonial-card {
+      will-change: transform, box-shadow;
+      transition: transform 0.18s ease, box-shadow 0.18s ease,
+                  border-color 0.3s ease !important;
+    }
+
+    /* Phase 3 — Glow pulse no btn-wa */
+    @keyframes glow-pulse {
+      0%, 80%, 100% { box-shadow: 0 0 0 0 rgba(32,178,86,0); }
+      40%            { box-shadow: 0 0 20px 7px rgba(32,178,86,0.3); }
+    }
+    .btn-wa { animation: glow-pulse 4s ease-in-out infinite; }
+    .btn-wa:hover { animation-play-state: paused; }
+
+    /* Phase 3 — Ripple */
+    .ripple-host { position: relative; overflow: hidden; }
+    @keyframes ripple-out {
+      from { transform: scale(0); opacity: 0.4; }
+      to   { transform: scale(5); opacity: 0; }
+    }
+    .ripple-dot {
+      position: absolute;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      pointer-events: none;
+      margin-left: -25px; margin-top: -25px;
+      animation: ripple-out 0.6s ease-out forwards;
+    }
+
+    /* ── Scroll progress bar ──────────────────────────── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: #B06500;
+      transform-origin: left;
+      transform: scaleX(0);
+      z-index: 9999;
+      pointer-events: none;
+      box-shadow: 0 0 8px rgba(176,101,0,0.6);
+    }
+
+    /* ── Copper line draw ──────────────────────────────── */
+    .copper-line {
+      width: 0 !important;
+      transition: width 0.7s cubic-bezier(.22,.68,0,1.2) !important;
+    }
+    .copper-line.line-drawn { width: 44px !important; }
+
+    /* ── Magnetic button ───────────────────────────────── */
+    .btn-wa, .btn-outline {
+      transition: background-color 0.2s ease, transform 0.25s cubic-bezier(.22,.68,0,1.2),
+                  box-shadow 0.2s ease !important;
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      #hero .hero-eyebrow, #hero .hero-title,
+      #hero .hero-sub, #hero .hero-cta {
+        opacity: 1 !important; transform: none !important;
+        transition: none !important;
+      }
+      .word-split-done .word { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .eyebrow-anim { opacity: 1 !important; transform: none !important; }
+      .reveal { transform: translateY(28px); }
+      .btn-wa { animation: none !important; }
+      .copper-line { width: 44px !important; transition: none !important; }
+      #scroll-progress { display: none; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- Scroll progress bar -->
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════ -->
+<header id="site-header" aria-label="Cabeçalho do site">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+    <!-- Logo esquerda -->
+    <a href="#hero" class="text-left flex-shrink-0" style="text-decoration:none;">
+      <div class="font-display text-base font-bold tracking-[0.18em] text-[#F5F5F0]">J3A</div>
+      <div class="eyebrow" style="font-size:0.6rem; letter-spacing:0.3em;">Estância Gaúcha</div>
+    </a>
+
+    <!-- Nav centro -->
+    <nav class="hidden md:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
+      <a href="#cutelaria" class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Cutelaria</a>
+      <a href="#emporio"   class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Empório</a>
+      <a href="#raizes"    class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Nossa História</a>
+    </nav>
+
+    <!-- CTA direita -->
+    <div class="flex items-center justify-end flex-shrink-0">
+      <a href="https://wa.me/5567999999999?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20a%20J3A."
+         target="_blank" rel="noopener noreferrer"
+         class="hidden md:inline-flex items-center gap-2 bg-[#20B256] hover:bg-[#1c9c4b] text-white font-body text-xs font-600 tracking-wider uppercase px-4 py-2 rounded-xl transition-colors duration-200">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6" aria-label="Seção principal">
+
+  <!-- Vídeo de fundo — coloque o arquivo na pasta C:\CUTELARIA\ e ajuste o src abaixo -->
+  <video
+    class="hero-video"
+    autoplay muted loop playsinline
+    aria-hidden="true"
+  >
+    <source src="Video Project 4.mp4" type="video/mp4" />
+    <!-- Fallback: se o vídeo não carregar, o poster (imagem) aparece -->
+  </video>
+  <div class="hero-overlay"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-2xl mx-auto">
+    <p class="eyebrow mb-7 hero-eyebrow">Campo Grande · Mato Grosso do Sul</p>
+    <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.25rem] font-bold leading-[1.15] text-[#F5F5F0] mb-6 hero-title">
+      O verdadeiro sabor e a tradição da Serra Gaúcha, agora no coração de Campo Grande.
+    </h1>
+    <p class="font-body font-300 text-base md:text-lg text-[#F5F5F0]/75 max-w-lg mx-auto mb-10 leading-relaxed hero-sub">
+      Facas artesanais de altíssimo padrão, queijos maturados, vinhos premiados e salames coloniais. Viva a experiência da J3A Estância Gaúcha.
+    </p>
+    <a href="https://wa.me/5567999999999?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20os%20produtos%20da%20J3A%20Estância%20Gaúcha."
+       target="_blank" rel="noopener noreferrer"
+       class="btn-wa hero-cta">
+      <i class="fa-brands fa-whatsapp text-lg"></i>
+      Falar com um Consultor no WhatsApp
+    </a>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" aria-hidden="true">
+    <span class="font-body text-[0.6rem] tracking-[0.3em] uppercase">Explore</span>
+    <i class="fa-solid fa-chevron-down text-[#B06500] text-xs animate-bounce"></i>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 2 · CUTELARIA ARTESANAL
+═══════════════════════════════════════════════════ -->
+<section id="cutelaria" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="cutelaria-title">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
+
+      <!-- Image -->
+      <div class="reveal img-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1593618998160-e34014e67546?w=900&q=85&auto=format&fit=crop"
+          alt="Faca artesanal premium com cabo em madeira nobre"
+          class="w-full h-[420px] md:h-[500px] object-cover rounded-xl"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="reveal reveal-delay-1">
+        <p class="eyebrow mb-4">Cutelaria Artesanal</p>
+        <div class="copper-line copper-line-left"></div>
+        <h2 id="cutelaria-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-6">
+          Precisão e Exclusividade em cada lâmina.
+        </h2>
+        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed mb-8 text-[0.95rem]">
+          Feitas à mão para quem entende que o churrasco no Mato Grosso do Sul exige as melhores ferramentas. Cabos em materiais nobres, aço forjado de alta retenção de fio e designs únicos. Uma faca J3A não é um utensílio, é um legado.
+        </p>
+        <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20ver%20o%20catálogo%20de%20facas%20artesanais."
+           target="_blank" rel="noopener noreferrer"
+           class="btn-outline">
+          <i class="fa-solid fa-book-open"></i>
+          Ver Catálogo de Facas
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 3 · EMPÓRIO COLONIAL
+═══════════════════════════════════════════════════ -->
+<section id="emporio" class="py-28 px-6 bg-[#222222]" aria-labelledby="emporio-title">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
+
+      <!-- Text (left on desktop) -->
+      <div class="reveal order-2 md:order-1">
+        <p class="eyebrow mb-4">Empório Colonial</p>
+        <div class="copper-line copper-line-left"></div>
+        <h2 id="emporio-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-6">
+          Sabores Inconfundíveis do Sul.
+        </h2>
+        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed mb-8 text-[0.95rem]">
+          Da nossa estância para a sua mesa. Trazemos diretamente da Serra Gaúcha os melhores produtos coloniais: vinhos e espumantes selecionados, salames artesanais, queijos curados, geleias e cachaças. O kit completo para receber quem você ama.
+        </p>
+        <a href="https://wa.me/5567999999999?text=Olá!%20Quero%20montar%20minha%20tábua%20de%20frios%20da%20J3A!"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-wa">
+          <i class="fa-solid fa-utensils"></i>
+          Montar Minha Tábua de Frios
+        </a>
+      </div>
+
+      <!-- Photo grid (right on desktop) -->
+      <div class="reveal reveal-delay-1 order-1 md:order-2 grid grid-cols-2 gap-4">
+        <img
+          src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=600&q=85&auto=format&fit=crop"
+          alt="Queijos curados coloniais da Serra Gaúcha"
+          class="w-full h-52 object-cover rounded-xl"
+          loading="lazy"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=85&auto=format&fit=crop"
+          alt="Vinhos e espumantes gaúchos selecionados"
+          class="w-full h-52 object-cover rounded-xl mt-8"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 3B · CATÁLOGO DE PRODUTOS
+═══════════════════════════════════════════════════ -->
+<section id="catalogo" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="catalogo-title">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center max-w-xl mx-auto mb-16 reveal">
+      <p class="eyebrow mb-4">Nossos Produtos</p>
+      <div class="copper-line"></div>
+      <h2 id="catalogo-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight">
+        Do RS direto pra sua mesa e sua mão.
+      </h2>
+    </div>
+
+    <!-- Grid de cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1: Facas Artesanais -->
+      <!-- FOTO: substitua o src pela imagem real das facas -->
+      <article class="product-card reveal reveal-delay-1 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20nas%20facas%20artesanais.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1593618998160-e34014e67546?w=700&q=85&auto=format&fit=crop"
+            alt="Facas artesanais J3A"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Cutelaria</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Facas Artesanais</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Lâminas forjadas à mão, cabos em madeira nobre e osso. Do churrasco ao colecionador.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+      <!-- Card 2: Licores & Bebidas -->
+      <!-- FOTO: substitua o src pela foto dos licores Buchmann -->
+      <article class="product-card reveal reveal-delay-2 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20nos%20licores%20e%20bebidas.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85&auto=format&fit=crop"
+            alt="Licores artesanais coloniais"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Bebidas</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Licores & Cachaças</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Licores Buchmann (doce de leite, piña colada, chocolate) e cachaças coloniais da Serra.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+      <!-- Card 3: Mel Artesanal -->
+      <!-- FOTO: substitua o src pela foto dos potes de mel -->
+      <article class="product-card reveal reveal-delay-3 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20no%20mel%20artesanal.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=700&q=85&auto=format&fit=crop"
+            alt="Mel artesanal de Gramado"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Naturais</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Mel Artesanal</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Mel puro de Gramado-RS, colhido com cuidado. Sabor autêntico, direto da Serra.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+      <!-- Card 4: Molhos Premium -->
+      <!-- FOTO: substitua o src pela foto das garrafinhas Sweet Chilli -->
+      <article class="product-card reveal reveal-delay-1 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20nos%20molhos%20premium.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1563636619-e9143da7973b?w=700&q=85&auto=format&fit=crop"
+            alt="Molhos gourmet linha premium"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Linha Premium</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Molhos & Temperos</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Sweet Chilli, barbecue, frutas vermelhas e mais. O equilíbrio perfeito entre o doce e o picante.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+      <!-- Card 5: Queijos & Embutidos -->
+      <!-- FOTO: substitua o src pela foto dos queijos e salames -->
+      <article class="product-card reveal reveal-delay-2 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20nos%20queijos%20e%20embutidos.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1452195100486-9cc805987862?w=700&q=85&auto=format&fit=crop"
+            alt="Queijos curados e salames coloniais"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Charcuterie</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Queijos & Salames</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Queijos curados, salames coloniais e embutidos artesanais. A base de toda boa tábua.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+      <!-- Card 6: Vinhos & Espumantes -->
+      <!-- FOTO: substitua o src pela foto das garrafas de vinho -->
+      <article class="product-card reveal reveal-delay-3 group cursor-pointer"
+               onclick="window.open('https://wa.me/5567999999999?text=Olá!%20Tenho%20interesse%20nos%20vinhos%20e%20espumantes.','_blank')">
+        <div class="product-img-wrap overflow-hidden rounded-t-xl">
+          <img
+            src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=700&q=85&auto=format&fit=crop"
+            alt="Vinhos e espumantes gaúchos"
+            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+        <div class="product-body bg-[#242424] border border-t-0 border-[rgba(176,101,0,0.15)] rounded-b-xl p-5">
+          <p class="eyebrow mb-2">Vinícola</p>
+          <h3 class="font-display text-lg font-bold text-[#F5F5F0] mb-2">Vinhos & Espumantes</h3>
+          <p class="font-body font-300 text-[#F5F5F0]/55 text-xs leading-relaxed mb-4">
+            Rótulos selecionados da Serra Gaúcha. Tintos, brancos e espumantes para toda ocasião.
+          </p>
+          <span class="product-cta">Ver no WhatsApp <i class="fa-brands fa-whatsapp ml-1"></i></span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- CTA geral -->
+    <div class="text-center mt-14 reveal">
+      <p class="font-body text-[#F5F5F0]/40 text-xs tracking-widest uppercase mb-5">Não encontrou o que procura?</p>
+      <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20saber%20todos%20os%20produtos%20disponíveis%20na%20J3A."
+         target="_blank" rel="noopener noreferrer"
+         class="btn-wa">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        Consultar catálogo completo
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 4 · EXPERIÊNCIA PADRÃO GRAMADO
+═══════════════════════════════════════════════════ -->
+<section id="experiencia" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="exp-title">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center max-w-2xl mx-auto mb-18 reveal">
+      <p class="eyebrow mb-4">A Experiência J3A</p>
+      <div class="copper-line"></div>
+      <h2 id="exp-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] mb-2 leading-tight">
+        Mais do que uma loja.
+      </h2>
+      <h2 class="font-display text-3xl lg:text-4xl font-bold italic text-[#B06500] leading-tight">
+        Uma experiência de acolhimento.
+      </h2>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-6 mb-14">
+
+      <!-- Card 1 -->
+      <article class="feature-card reveal reveal-delay-1">
+        <div class="icon-badge">
+          <i class="fa-solid fa-wine-glass text-[#B06500] text-xl" aria-hidden="true"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-[#F5F5F0] mb-3">Degustação Premium</h3>
+        <p class="font-body font-300 text-[#F5F5F0]/60 text-sm leading-relaxed">
+          Prove nossos queijos, vinhos e cachaças antes de escolher.
+        </p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="feature-card reveal reveal-delay-2">
+        <div class="icon-badge">
+          <i class="fa-solid fa-handshake text-[#B06500] text-xl" aria-hidden="true"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-[#F5F5F0] mb-3">Hospitalidade Gaúcha</h3>
+        <p class="font-body font-300 text-[#F5F5F0]/60 text-sm leading-relaxed">
+          O famoso "Padrão Gramado" de atendimento, sem pressa, com simpatia.
+        </p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="feature-card reveal reveal-delay-3">
+        <div class="icon-badge">
+          <i class="fa-solid fa-star text-[#B06500] text-xl" aria-hidden="true"></i>
+        </div>
+        <h3 class="font-display text-xl font-bold text-[#F5F5F0] mb-3">Consultoria Especializada</h3>
+        <p class="font-body font-300 text-[#F5F5F0]/60 text-sm leading-relaxed">
+          Ajudamos você a harmonizar a bebida com a comida e a escolher a faca perfeita.
+        </p>
+      </article>
+
+    </div>
+
+    <!-- CTA central -->
+    <div class="text-center reveal">
+      <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20agendar%20minha%20visita%20à%20J3A%20Estância%20Gaúcha."
+         target="_blank" rel="noopener noreferrer"
+         class="btn-outline">
+        <i class="fa-solid fa-calendar-check"></i>
+        Agendar minha visita à loja
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 5 · STORYTELLING / RAÍZES
+═══════════════════════════════════════════════════ -->
+<section id="raizes" class="relative py-32 px-6 bg-[#131313] overflow-hidden" aria-labelledby="raizes-title">
+
+  <!-- Decorative watermark -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+    <span class="font-display font-bold text-[#B06500]"
+          style="font-size: clamp(8rem, 25vw, 18rem); opacity: 0.03; line-height:1;">J3A</span>
+  </div>
+
+  <div class="relative z-10 max-w-2xl mx-auto text-center reveal">
+    <p class="eyebrow mb-6">Nossa História</p>
+    <div class="copper-line"></div>
+    <h2 id="raizes-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-8">
+      Nossas Raízes: A Ponte entre a Serra e o Pantanal.
+    </h2>
+    <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-base md:text-[1.05rem]">
+      A J3A Estância Gaúcha nasceu do desejo de unir duas paixões: a tradição inigualável dos produtos do Rio Grande do Sul e a cultura forte e acolhedora do sul-mato-grossense. Construímos este espaço para que você se sinta em casa, reencontre suas raízes ou descubra a magia do autêntico produto colonial, bem no centro de Campo Grande.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 6 · DEPOIMENTOS / PROVA SOCIAL
+═══════════════════════════════════════════════════ -->
+<section id="depoimentos" class="py-28 px-6 bg-[#1E1E1E]" aria-labelledby="dep-title">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center mb-14 reveal">
+      <p class="eyebrow mb-4">Avaliações do Google</p>
+      <div class="copper-line"></div>
+      <h2 id="dep-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] mb-5">
+        O que dizem nossos visitantes
+      </h2>
+      <div class="flex items-center justify-center gap-1.5" role="img" aria-label="Avaliação 5 estrelas no Google">
+        <i class="fa-solid fa-star text-amber-400 text-base" aria-hidden="true"></i>
+        <i class="fa-solid fa-star text-amber-400 text-base" aria-hidden="true"></i>
+        <i class="fa-solid fa-star text-amber-400 text-base" aria-hidden="true"></i>
+        <i class="fa-solid fa-star text-amber-400 text-base" aria-hidden="true"></i>
+        <i class="fa-solid fa-star text-amber-400 text-base" aria-hidden="true"></i>
+        <span class="font-body text-xs text-[#F5F5F0]/40 ml-2">5.0 no Google</span>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Depoimento 1 -->
+      <blockquote class="testimonial-card reveal reveal-delay-1">
+        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+        </div>
+        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
+          "Era o que estava faltando em Campo Grande, me senti em Gramado. Atendimento nota mil! Produtos de excelente qualidade, amei tudo."
+        </p>
+        <footer class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+          </div>
+          <div>
+            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renan Ramos</cite>
+            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google</p>
+          </div>
+        </footer>
+      </blockquote>
+
+      <!-- Depoimento 2 -->
+      <blockquote class="testimonial-card reveal reveal-delay-2">
+        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+        </div>
+        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
+          "Um dos melhores atendimentos que já tive. Fui comprar um vinho, saí com 3, um licor e um salame… assim não dá! Mas valeu cada centavo."
+        </p>
+        <footer class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+          </div>
+          <div>
+            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cintia Garrido</cite>
+            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google</p>
+          </div>
+        </footer>
+      </blockquote>
+
+      <!-- Depoimento 3 -->
+      <blockquote class="testimonial-card reveal reveal-delay-3">
+        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+        </div>
+        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
+          "Excelente localização e profissionalismo no atendimento. Produtos de qualidade — amei os queijos e principalmente a variedade em modelos de facas."
+        </p>
+        <footer class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+          </div>
+          <div>
+            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Flores</cite>
+            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google · 19 fotos</p>
+          </div>
+        </footer>
+      </blockquote>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SEÇÃO 7 · FOOTER / LOCALIZAÇÃO
+═══════════════════════════════════════════════════ -->
+<footer id="localizacao" class="pt-24 pb-12 px-6 bg-[#111111]" aria-labelledby="footer-title">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Heading -->
+    <div class="text-center mb-16 reveal">
+      <p class="eyebrow mb-4">Onde Estamos</p>
+      <div class="copper-line"></div>
+      <h2 id="footer-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0]">
+        A Tradição te Espera de Portas Abertas
+      </h2>
+    </div>
+
+    <!-- Grid info + mapa -->
+    <div class="grid md:grid-cols-2 gap-12 items-start mb-16">
+
+      <!-- Info -->
+      <div class="reveal space-y-7">
+
+        <div class="flex items-start gap-4">
+          <div class="icon-badge" style="margin-bottom:0; margin-top:2px;">
+            <i class="fa-solid fa-location-dot text-[#B06500] text-lg" aria-hidden="true"></i>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">Endereço</p>
+            <address class="font-body font-300 text-[#F5F5F0]/70 text-sm leading-relaxed not-italic">
+              R. Piauí, 28 – Vila Rosa Pires<br />
+              Campo Grande – MS
+            </address>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="icon-badge" style="margin-bottom:0; margin-top:2px;">
+            <i class="fa-solid fa-clock text-[#B06500] text-lg" aria-hidden="true"></i>
+          </div>
+          <div>
+            <p class="eyebrow mb-1">Horário de Funcionamento</p>
+            <p class="font-body font-300 text-[#F5F5F0]/70 text-sm leading-relaxed">
+              Segunda a Sexta — 09:00 às 19:00<br />
+              Sábado — 09:00 às 12:00
+            </p>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+          <a href="https://maps.google.com/?q=R.+Piauí,+28+-+Vila+Rosa+Pires,+Campo+Grande+-+MS"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 font-body text-sm font-600 text-[#B06500] hover:text-[#C97500] transition-colors duration-200 underline underline-offset-4 decoration-[#B06500]/40">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            Como Chegar (Google Maps)
+          </a>
+          <a href="https://wa.me/5567999999999?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20a%20J3A%20Estância%20Gaúcha."
+             target="_blank" rel="noopener noreferrer"
+             class="btn-wa" style="padding: 0.65rem 1.5rem; font-size: 0.7rem;">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            Tirar dúvida no WhatsApp
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Map placeholder -->
+      <div class="reveal reveal-delay-1">
+        <div class="rounded-xl overflow-hidden border border-[#333]" style="height:280px;">
+          <iframe
+            title="Localização J3A Estância Gaúcha no Google Maps"
+            src="https://maps.google.com/maps?q=R.+Piauí,+28,+Vila+Rosa+Pires,+Campo+Grande,+MS,+Brasil&output=embed&z=16&hl=pt-BR"
+            width="100%"
+            height="100%"
+            style="border:0; filter: grayscale(30%) contrast(1.05);"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer bottom bar -->
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-center md:text-left">
+        <span class="font-display text-base font-bold tracking-[0.15em] text-[#F5F5F0]">J3A</span>
+        <span class="mx-2 text-[#B06500]" aria-hidden="true">·</span>
+        <span class="font-body text-[0.65rem] tracking-[0.25em] uppercase text-[#B06500]">Estância Gaúcha</span>
+      </div>
+      <p class="font-body text-[0.65rem] text-[#F5F5F0]/25">
+        © 2025 J3A Estância Gaúcha Cutelaria · Campo Grande, MS
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     WHATSAPP FLUTUANTE
+═══════════════════════════════════════════════════ -->
+<a id="wa-float"
+   href="https://wa.me/5567999999999?text=Olá!%20Vim%20pelo%20site%20da%20J3A%20Estância%20Gaúcha%20e%20gostaria%20de%20mais%20informações."
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Fale conosco no WhatsApp">
+  <span class="wa-pulse" aria-hidden="true"></span>
+  <i class="fa-brands fa-whatsapp text-2xl" aria-hidden="true"></i>
+  <span class="wa-label">WhatsApp</span>
+</a>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════ -->
+<script>
+  // ── Header scroll ────────────────────────────────────
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 80);
+  }, { passive: true });
+
+  // ── Scroll reveal (Intersection Observer) ───────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── Smooth scroll for anchor links ──────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ANIMATION SYSTEM
+═══════════════════════════════════════════════════ -->
+<script>
+(function () {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Phase 2: Hero entrance ────────────────────────── */
+  const heroEl = document.getElementById('hero');
+  if (heroEl && !reduced) {
+    // double-rAF: garante que o browser pinta o estado invisível antes de animar
+    requestAnimationFrame(() => requestAnimationFrame(() => heroEl.classList.add('hero--loaded')));
+  } else if (heroEl) {
+    heroEl.classList.add('hero--loaded');
+  }
+
+  /* ── Phase 3: Word-split em títulos h2 ─────────────── */
+  if (!reduced) {
+    document.querySelectorAll('section h2').forEach(h2 => {
+      const raw = h2.innerHTML;
+      // guarda o html original sem quebrar tags inline
+      const words = raw.split(/(\s+)/);
+      h2.innerHTML = words.map((tok, i) =>
+        /\s+/.test(tok) ? tok :
+        `<span class="word" style="--wi:${Math.floor(i/2)}">${tok}</span>`
+      ).join('');
+      h2.classList.add('word-split-done');
+    });
+
+    const h2Obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('words-visible');
+          h2Obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.word-split-done').forEach(el => h2Obs.observe(el));
+  }
+
+  /* ── Phase 3: Eyebrow fade-up (fora do hero) ────────── */
+  if (!reduced) {
+    const eyeObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('anim-in');
+          eyeObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.eyebrow').forEach(el => {
+      if (el.closest('#hero')) return;
+      el.classList.add('eyebrow-anim');
+      eyeObs.observe(el);
+    });
+  }
+
+  /* ── Phase 3: Card 3D tilt ──────────────────────────── */
+  if (!reduced) {
+    document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const dx = ((e.clientX - r.left) / r.width  - 0.5) * 2;
+        const dy = ((e.clientY - r.top)  / r.height - 0.5) * 2;
+        card.style.transform = `perspective(700px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg)`;
+        card.style.boxShadow = `${-dx * 10}px ${dy * 8}px 28px rgba(0,0,0,0.4)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      });
+    });
+  }
+
+  /* ── Scroll progress bar ──────────────────────────── */
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+    }, { passive: true });
+  }
+
+  /* ── Copper line draw ───────────────────────────────── */
+  if (!reduced) {
+    const lineObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('line-drawn');
+          lineObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.8 });
+    document.querySelectorAll('.copper-line').forEach(el => lineObs.observe(el));
+  } else {
+    document.querySelectorAll('.copper-line').forEach(el => el.classList.add('line-drawn'));
+  }
+
+  /* ── Magnetic buttons ───────────────────────────────── */
+  if (!reduced) {
+    document.querySelectorAll('.btn-wa, .btn-outline').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width  / 2)) * 0.22;
+        const dy = (e.clientY - (r.top  + r.height / 2)) * 0.22;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ── Phase 3: Ripple em botões ──────────────────────── */
+  document.querySelectorAll('.btn-wa, .btn-outline').forEach(btn => {
+    btn.classList.add('ripple-host');
+    btn.addEventListener('click', e => {
+      const r = btn.getBoundingClientRect();
+      const dot = document.createElement('span');
+      dot.className = 'ripple-dot';
+      dot.style.left = `${e.clientX - r.left}px`;
+      dot.style.top  = `${e.clientY - r.top}px`;
+      btn.appendChild(dot);
+      dot.addEventListener('animationend', () => dot.remove(), { once: true });
+    });
+  });
+
+})();
+</script>
+
+<!-- ── GSAP ScrollTrigger section transitions ─────────────────────────── -->
+<script>
+(function () {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  /* ── 1. Hero video zoom as user scrolls away ─────────────────────── */
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    gsap.to(heroVideo, {
+      scale: 1.14,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+  }
+
+  /* ── 2. Cutelaria image parallax ─────────────────────────────────── */
+  const cutelariaImg = document.querySelector('#cutelaria .img-wrap img');
+  if (cutelariaImg) {
+    gsap.fromTo(cutelariaImg,
+      { yPercent: -10 },
+      {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#cutelaria .img-wrap',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      }
+    );
+  }
+
+  /* ── 3. Raízes watermark parallax (faster = deeper feel) ─────────── */
+  const watermark = document.querySelector('#raizes .absolute');
+  if (watermark) {
+    gsap.fromTo(watermark,
+      { yPercent: 15 },
+      {
+        yPercent: -25,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#raizes',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      }
+    );
+  }
+
+  /* ── 4. Feature cards — GSAP batch wave entrance ─────────────────── */
+  const featureCards = gsap.utils.toArray('#experiencia .feature-card');
+  if (featureCards.length) {
+    // Hand off these elements from IntersectionObserver to GSAP
+    featureCards.forEach(el => {
+      if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el);
+    });
+    gsap.set(featureCards, { opacity: 0, y: 60, scale: 0.95 });
+
+    ScrollTrigger.batch(featureCards, {
+      start: 'top 88%',
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.18,
+          duration: 0.9,
+          ease: 'power3.out',
+          overwrite: true,
+        }),
+    });
+  }
+
+  /* ── 5. Product cards — stagger with subtle rotation ─────────────── */
+  const productCards = gsap.utils.toArray('#catalogo .product-card');
+  if (productCards.length) {
+    productCards.forEach(el => {
+      if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el);
+    });
+    gsap.set(productCards, { opacity: 0, y: 70, rotationX: 8, scale: 0.96, transformPerspective: 800 });
+
+    ScrollTrigger.batch(productCards, {
+      start: 'top 90%',
+      batchMax: 3,
+      interval: 0.08,
+      once: true,
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          scale: 1,
+          stagger: 0.11,
+          duration: 0.75,
+          ease: 'power2.out',
+          overwrite: true,
+        }),
+    });
+  }
+
+
+})();
+</script>
+
+</body>
+</html>

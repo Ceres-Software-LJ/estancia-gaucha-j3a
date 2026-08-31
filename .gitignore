@@ -1,0 +1,7 @@
+# Assets pesados / temporários
+*.mp4
+*.glb
+*.zip
+boilerplate-landing/
+abrir-site.bat
+node_modules/
