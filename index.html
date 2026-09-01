@@ -38,8 +38,8 @@
             'dark-base':   '#1A1A1A',
             'dark-raised': '#242424',
             'dark-high':   '#2E2E2E',
-            'wa':          '#20B256',
-            'wa-hover':    '#1c9c4b',
+            'wa':          '#1a7a3c',
+            'wa-hover':    '#155f2e',
           },
           fontFamily: {
             display: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -101,7 +101,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      background-color: #20B256;
+      background-color: #1a7a3c;
       color: #fff;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
@@ -113,7 +113,7 @@
       transition: background-color 0.2s ease, transform 0.15s ease;
       text-decoration: none;
     }
-    .btn-wa:hover { background-color: #1c9c4b; transform: translateY(-1px); }
+    .btn-wa:hover { background-color: #155f2e; transform: translateY(-1px); }
     .btn-wa:active { transform: translateY(0); }
 
     .btn-outline {
@@ -278,7 +278,7 @@
       display: flex;
       align-items: center;
       gap: 0.625rem;
-      background: #20B256;
+      background: #1a7a3c;
       color: #fff;
       text-decoration: none;
       border-radius: 50px;
@@ -290,9 +290,9 @@
       transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
     #wa-float:hover {
-      background: #1c9c4b;
+      background: #155f2e;
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(32,178,86,0.5);
+      box-shadow: none;
     }
     #wa-float:active { transform: translateY(0); }
     #wa-float .wa-label { display: none; }
@@ -406,13 +406,7 @@
                   border-color 0.3s ease !important;
     }
 
-    /* Phase 3 — Glow pulse no btn-wa */
-    @keyframes glow-pulse {
-      0%, 80%, 100% { box-shadow: 0 0 0 0 rgba(32,178,86,0); }
-      40%            { box-shadow: 0 0 20px 7px rgba(32,178,86,0.3); }
-    }
-    .btn-wa { animation: glow-pulse 4s ease-in-out infinite; }
-    .btn-wa:hover { animation-play-state: paused; }
+    /* Phase 3 — Glow pulse removido */
 
     /* Phase 3 — Ripple */
     .ripple-host { position: relative; overflow: hidden; }
@@ -469,7 +463,7 @@
       #knife-blade { stroke-dashoffset: 0 !important; }
       .eyebrow-anim { opacity: 1 !important; transform: none !important; }
       .reveal { transform: translateY(28px); }
-      .btn-wa { animation: none !important; }
+      .btn-wa { animation: none; }
       .copper-line { width: 44px !important; transition: none !important; }
       #scroll-progress { display: none; }
     }
@@ -505,7 +499,7 @@
     <div class="flex items-center justify-end flex-shrink-0">
       <a href="https://wa.me/5567999999999?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20conhecer%20a%20J3A."
          target="_blank" rel="noopener noreferrer"
-         class="hidden md:inline-flex items-center gap-2 bg-[#20B256] hover:bg-[#1c9c4b] text-white font-body text-xs font-600 tracking-wider uppercase px-4 py-2 rounded-xl transition-colors duration-200">
+         class="hidden md:inline-flex items-center gap-2 bg-[#1a7a3c] hover:bg-[#155f2e] text-white font-body text-xs font-600 tracking-wider uppercase px-4 py-2 rounded-xl transition-colors duration-200">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
       </a>
     </div>
