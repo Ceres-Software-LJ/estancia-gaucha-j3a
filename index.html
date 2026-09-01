@@ -274,6 +274,20 @@
       border-width: 0 2px 2px 0;
     }
 
+    /* ── Nav links ───────────────────────────────────── */
+    .nav-link {
+      font-family: var(--font-body, 'Montserrat', sans-serif);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,0.45);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: #B06500; }
+
     /* ── Header ─────────────────────────────────────── */
     #site-header {
       position: fixed;
@@ -534,14 +548,20 @@
 
     <!-- Logo esquerda -->
     <a href="#hero" class="flex-shrink-0" style="text-decoration:none;">
-      <img src="J3A.png" alt="J3A Estância Gaúcha Cutelaria" class="h-24 w-auto object-contain" />
+      <img src="J3A.png" alt="J3A Estância Gaúcha Cutelaria" class="h-[4.2rem] w-auto object-contain" />
     </a>
 
     <!-- Nav centro -->
-    <nav class="hidden md:flex items-center gap-7 absolute left-1/2 -translate-x-1/2">
-      <a href="#cutelaria" class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Cutelaria</a>
-      <a href="#kits"      class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Kits</a>
-      <a href="#raizes"    class="font-body text-xs font-500 tracking-widest uppercase text-[#F5F5F0]/50 hover:text-[#B06500] transition-colors duration-200">Nossa História</a>
+    <nav class="hidden lg:flex items-center gap-5 absolute left-1/2 -translate-x-1/2">
+      <a href="#cutelaria"  class="nav-link">Cutelaria</a>
+      <a href="#bebidas"    class="nav-link">Empório</a>
+      <a href="#kits"       class="nav-link">Kits</a>
+      <a href="#catalogo"   class="nav-link">Produtos</a>
+      <a href="#experiencia" class="nav-link">Experiência</a>
+      <a href="#raizes"     class="nav-link">Nossa História</a>
+      <a href="#quem-somos" class="nav-link">Quem Somos</a>
+      <a href="#depoimentos" class="nav-link">Avaliações</a>
+      <a href="#localizacao" class="nav-link">Localização</a>
     </nav>
 
     <!-- CTA direita -->
