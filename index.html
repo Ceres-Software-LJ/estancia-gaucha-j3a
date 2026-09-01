@@ -1029,8 +1029,14 @@
 ═══════════════════════════════════════════════════ -->
 <section id="raizes" class="relative py-32 px-6 bg-[#131313] overflow-hidden" aria-labelledby="raizes-title">
 
+  <!-- Vídeo de fundo -->
+  <video autoplay muted loop playsinline aria-hidden="true"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.12;pointer-events:none;z-index:0;">
+    <source src="raizes-bg.mp4" type="video/mp4" />
+  </video>
+
   <!-- Decorative watermark -->
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style="z-index:1;" aria-hidden="true">
     <span class="font-display font-bold text-[#B06500]"
           style="font-size: clamp(8rem, 25vw, 18rem); opacity: 0.03; line-height:1;">J3A</span>
   </div>
