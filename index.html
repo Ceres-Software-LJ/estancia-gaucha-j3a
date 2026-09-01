@@ -986,34 +986,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════════
-     STATS BAR
-═══════════════════════════════════════════════════ -->
-<div id="stats-bar" class="py-20 px-6 bg-[#161616] border-y border-[rgba(176,101,0,0.1)]">
-  <div class="max-w-3xl mx-auto grid grid-cols-3 gap-4 text-center divide-x divide-[rgba(176,101,0,0.12)]">
-    <div class="px-4">
-      <div class="flex items-end justify-center gap-0.5">
-        <span class="stat-value counter" data-target="8">0</span>
-        <span class="font-display text-3xl font-bold text-[#B06500] mb-1 leading-none">+</span>
-      </div>
-      <p class="eyebrow mt-3">Anos de Tradição</p>
-    </div>
-    <div class="px-4">
-      <div class="flex items-end justify-center gap-0.5">
-        <span class="stat-value counter" data-target="200">0</span>
-        <span class="font-display text-3xl font-bold text-[#B06500] mb-1 leading-none">+</span>
-      </div>
-      <p class="eyebrow mt-3">Produtos Selecionados</p>
-    </div>
-    <div class="px-4">
-      <div class="flex items-end justify-center">
-        <span class="stat-value">5</span>
-        <span class="text-amber-400 text-2xl mb-1 ml-1 leading-none">★</span>
-      </div>
-      <p class="eyebrow mt-3">Estrelas no Google</p>
-    </div>
-  </div>
-</div>
 
 
 <!-- ═══════════════════════════════════════════════════
@@ -1507,24 +1479,6 @@
     }, { passive: true });
   })();
 
-  /* ── 7. Counter animation ─────────────────────────────────────────── */
-  document.querySelectorAll('.counter').forEach(function(el) {
-    var target = parseInt(el.dataset.target, 10);
-    var proxy  = { val: 0 };
-    ScrollTrigger.create({
-      trigger: '#stats-bar',
-      start: 'top 80%',
-      once: true,
-      onEnter: function() {
-        gsap.to(proxy, {
-          val: target,
-          duration: 1.8,
-          ease: 'power2.out',
-          onUpdate: function() { el.textContent = Math.round(proxy.val); },
-        });
-      },
-    });
-  });
 
   /* ── 8. Feature cards — GSAP batch wave entrance ─────────────────── */
   var featureCards = gsap.utils.toArray('#experiencia .feature-card');
