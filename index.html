@@ -184,13 +184,33 @@
       border-color: rgba(176,101,0,0.35);
     }
 
+    /* ── Reviews carousel ───────────────────────────── */
+    .rev-wrap {
+      overflow: hidden;
+      cursor: grab;
+      user-select: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+    }
+    .rev-wrap:active { cursor: grabbing; }
+    .rev-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      padding: 8px 0 20px;
+    }
+
     /* ── Testimonial cards ──────────────────────────── */
     .testimonial-card {
       background: #242424;
       border: 1px solid rgba(176,101,0,0.15);
       border-radius: 12px;
       padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 200px;
     }
+    .testimonial-card p.font-body { flex: 1; }
 
     /* ── Product catalog cards ──────────────────────── */
     .product-card {
@@ -1038,79 +1058,299 @@
       </div>
     </div>
 
-    <!-- Cards -->
-    <div class="grid md:grid-cols-3 gap-6">
+    <!-- Carrossel de avaliações -->
+    <div class="rev-wrap" id="rev-carousel">
+      <div class="rev-track" id="rev-track">
 
-      <!-- Depoimento 1 -->
-      <blockquote class="testimonial-card reveal reveal-delay-1">
-        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-        </div>
-        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
-          "Era o que estava faltando em Campo Grande, me senti em Gramado. Atendimento nota mil! Produtos de excelente qualidade, amei tudo."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
-            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+        <!-- === BLOCO ORIGINAL === -->
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
           </div>
-          <div>
-            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renan Ramos</cite>
-            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google</p>
-          </div>
-        </footer>
-      </blockquote>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Era o que estava faltando em Campo Grande, me senti em Gramado. Atendimento nota mil! Produtos de excelente qualidade, amei tudo."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renan Ramos</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás</p></div>
+          </footer>
+        </blockquote>
 
-      <!-- Depoimento 2 -->
-      <blockquote class="testimonial-card reveal reveal-delay-2">
-        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-        </div>
-        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
-          "Um dos melhores atendimentos que já tive. Fui comprar um vinho, saí com 3, um licor e um salame… assim não dá! Mas valeu cada centavo."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
-            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
           </div>
-          <div>
-            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cintia Garrido</cite>
-            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google</p>
-          </div>
-        </footer>
-      </blockquote>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Um dos melhores atendimentos que já tive. Fui comprar um vinho, saí com 3, um licor e um salame… assim não dá! Mas valeu cada centavo."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cintia Garrido</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás</p></div>
+          </footer>
+        </blockquote>
 
-      <!-- Depoimento 3 -->
-      <blockquote class="testimonial-card reveal reveal-delay-3">
-        <div class="flex gap-0.5 mb-5" aria-label="5 estrelas">
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-          <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
-        </div>
-        <p class="font-body font-300 text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-6">
-          "Excelente localização e profissionalismo no atendimento. Produtos de qualidade — amei os queijos e principalmente a variedade em modelos de facas."
-        </p>
-        <footer class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0">
-            <i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
           </div>
-          <div>
-            <cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Flores</cite>
-            <p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Campo Grande, MS · Google · 19 fotos</p>
-          </div>
-        </footer>
-      </blockquote>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Excelente localização e profissionalismo no atendimento. Amei os queijos e principalmente a variedade em modelos de facas."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Flores</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás · 19 fotos</p></div>
+          </footer>
+        </blockquote>
 
-    </div>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Minha experiência começou ao me deparar com um anúncio de uma faca muito bonita. Ao buscar mais informações, encontrei a loja e não me arrependi! Produto de qualidade, entrega rápida."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Denian Minosso</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 4 meses atrás · Guia local</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Uma infinidade de produtos gaúchos, atendimento excelente padrão Gramado/RS. É realmente um pedacinho da serra Gaúcha em Campo Grande."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Andreina Ruivo</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás · Guia local</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Pedaço do Rio Grande do Sul aqui no MS. Chego e fico muito à vontade com o excelente atendimento, além dos produtos serem de grande qualidade."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Batista Lima Flores</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás · Guia local</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Ótimos produtos e atendimento excelente. Produtos artesanais de excelente qualidade. Qualquer dica é só falar com a Gisele."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cel Varandas</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás · Guia local</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento rápido e eficaz, uma das poucas lojas que responde rápido no WhatsApp."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Milena Martins</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás · Guia local</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Sistema DIFERENTE, que atendimento! Campo Grande precisava de uma loja nesse patamar."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renato Correa</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 4 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento nota mil, super atenciosas, produtos de qualidade."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Eduardo Recalde Cabral</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 6 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Produtos excelentes, atendimento impecável ❤️"</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Gisele Borges</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Muito boa, ótimo atendimento e diversos produtos — ameiiii ❤️"</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Isys Oliveira</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 3 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento maravilhoso e produtos de qualidade 👏👏"</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Juliane Rodrigues</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Produtos maravilhosos e atendimento excelente."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Maria Claudia Lima</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 5 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Loja de excelência."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Kemy Fernanda</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 8 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Top demais!"</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Pati Ferreira</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 9 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Top nota mil 👏🏻"</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Carlos Henrique</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 6 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;">
+          <div class="flex gap-0.5 mb-4" aria-label="5 estrelas">
+            <i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i><i class="fa-solid fa-star text-amber-400 text-xs" aria-hidden="true"></i>
+          </div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Fui muito bem atendida."</p>
+          <footer class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs" aria-hidden="true"></i></div>
+            <div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Marília Gabriela Vera</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 8 meses atrás</p></div>
+          </footer>
+        </blockquote>
+
+        <!-- === CLONE para loop infinito === -->
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Era o que estava faltando em Campo Grande, me senti em Gramado. Atendimento nota mil! Produtos de excelente qualidade, amei tudo."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renan Ramos</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Um dos melhores atendimentos que já tive. Fui comprar um vinho, saí com 3, um licor e um salame… assim não dá! Mas valeu cada centavo."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cintia Garrido</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Excelente localização e profissionalismo no atendimento. Amei os queijos e principalmente a variedade em modelos de facas."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Flores</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás · 19 fotos</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Minha experiência começou ao me deparar com um anúncio de uma faca muito bonita. Ao buscar mais informações, encontrei a loja e não me arrependi!"</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Denian Minosso</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 4 meses atrás · Guia local</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Uma infinidade de produtos gaúchos, atendimento excelente padrão Gramado/RS. É realmente um pedacinho da serra Gaúcha em Campo Grande."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Andreina Ruivo</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás · Guia local</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Pedaço do Rio Grande do Sul aqui no MS. Chego e fico muito à vontade com o excelente atendimento, além dos produtos serem de grande qualidade."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Jeronimo Batista Lima Flores</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás · Guia local</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Ótimos produtos e atendimento excelente. Produtos artesanais de excelente qualidade. Qualquer dica é só falar com a Gisele."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Cel Varandas</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · um mês atrás · Guia local</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento rápido e eficaz, uma das poucas lojas que responde rápido no WhatsApp."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Milena Martins</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 2 meses atrás · Guia local</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Sistema DIFERENTE, que atendimento! Campo Grande precisava de uma loja nesse patamar."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Renato Correa</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 4 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento nota mil, super atenciosas, produtos de qualidade."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Eduardo Recalde Cabral</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 6 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Produtos excelentes, atendimento impecável ❤️"</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Gisele Borges</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Muito boa, ótimo atendimento e diversos produtos — ameiiii ❤️"</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Isys Oliveira</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 3 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Atendimento maravilhoso e produtos de qualidade 👏👏"</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Juliane Rodrigues</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 7 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Produtos maravilhosos e atendimento excelente."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Maria Claudia Lima</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 5 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Loja de excelência."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Kemy Fernanda</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 8 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Top nota mil 👏🏻"</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Carlos Henrique</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 6 meses atrás</p></div></footer>
+        </blockquote>
+        <blockquote class="testimonial-card" style="width:clamp(280px,30vw,360px);flex-shrink:0;" aria-hidden="true">
+          <div class="flex gap-0.5 mb-4"><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i><i class="fa-solid fa-star text-amber-400 text-xs"></i></div>
+          <p class="font-body text-[#F5F5F0]/75 text-sm leading-relaxed italic mb-5">"Fui muito bem atendida."</p>
+          <footer class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-[#B06500]/20 flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-user text-[#B06500] text-xs"></i></div><div><cite class="font-body text-xs font-600 text-[#F5F5F0] not-italic">Marília Gabriela Vera</cite><p class="font-body text-[0.65rem] text-[#F5F5F0]/35 mt-0.5">Google · 8 meses atrás</p></div></footer>
+        </blockquote>
+
+      </div><!-- /.rev-track -->
+    </div><!-- /.rev-wrap -->
+
   </div>
 </section>
 
@@ -1457,6 +1697,58 @@
       }
       requestAnimationFrame(loop);
     })();
+
+    wrap.addEventListener('mousedown', function(e) {
+      isDragging = true; startX = e.pageX; startPos = pos;
+      e.preventDefault();
+    });
+    document.addEventListener('mouseup',   function() { isDragging = false; });
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      pos = clamp(startPos + (e.pageX - startX));
+      track.style.transform = 'translateX(' + pos + 'px)';
+    });
+    wrap.addEventListener('touchstart', function(e) {
+      isDragging = true; startX = e.touches[0].pageX; startPos = pos;
+    }, { passive: true });
+    document.addEventListener('touchend',  function() { isDragging = false; });
+    document.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+      pos = clamp(startPos + (e.touches[0].pageX - startX));
+      track.style.transform = 'translateX(' + pos + 'px)';
+    }, { passive: true });
+  })();
+
+
+  /* ── 7. Reviews horizontal infinite carousel ────────────────────── */
+  (function() {
+    var wrap  = document.getElementById('rev-carousel');
+    var track = document.getElementById('rev-track');
+    if (!wrap || !track) return;
+
+    var pos = 0, speed = 0.45;
+    var isDragging = false, startX = 0, startPos = 0;
+    var paused = false;
+
+    function halfWidth() { return track.scrollWidth / 2; }
+
+    function clamp(p) {
+      var h = halfWidth();
+      while (p < -h) p += h;
+      while (p > 0)  p -= h;
+      return p;
+    }
+
+    (function loop() {
+      if (!isDragging && !paused) {
+        pos = clamp(pos - speed);
+        track.style.transform = 'translateX(' + pos + 'px)';
+      }
+      requestAnimationFrame(loop);
+    })();
+
+    wrap.addEventListener('mouseenter', function() { paused = true; });
+    wrap.addEventListener('mouseleave', function() { paused = false; });
 
     wrap.addEventListener('mousedown', function(e) {
       isDragging = true; startX = e.pageX; startPos = pos;
