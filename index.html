@@ -553,41 +553,89 @@
 <!-- ═══════════════════════════════════════════════════
      SEÇÃO 2 · CUTELARIA ARTESANAL
 ═══════════════════════════════════════════════════ -->
-<section id="cutelaria" class="py-28 px-6 bg-[#1A1A1A]" aria-labelledby="cutelaria-title">
+<section id="cutelaria" class="py-24 px-6 bg-[#1A1A1A]" aria-labelledby="cutelaria-title">
   <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-14 lg:gap-24 items-center">
 
-      <!-- Image -->
-      <div class="reveal img-wrap">
-        <img
-          src="cutelaria-facas.jpg"
-          alt="Faca artesanal premium com cabo em madeira nobre"
-          class="w-full h-[420px] md:h-[500px] object-cover rounded-xl"
-          loading="lazy"
-        />
+    <!-- Header -->
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="eyebrow mb-4">Cutelaria Artesanal</p>
+      <div class="copper-line copper-line-left"></div>
+      <h2 id="cutelaria-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-5">
+        Precisão e Exclusividade em cada lâmina.
+      </h2>
+      <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-7">
+        Feitas à mão para quem entende que o churrasco no Mato Grosso do Sul exige as melhores ferramentas. Cabos em materiais nobres, aço forjado de alta retenção de fio e designs únicos. Uma faca J3A não é um utensílio, é um legado.
+      </p>
+      <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20ver%20o%20catálogo%20de%20facas%20artesanais."
+         target="_blank" rel="noopener noreferrer"
+         class="btn-outline">
+        <i class="fa-solid fa-book-open"></i>
+        Ver Catálogo de Facas
+      </a>
+    </div>
+
+    <!-- Bento Gallery -->
+    <div class="cute-bento">
+
+      <!-- A: parede de facas — tall left -->
+      <div class="cute-cell cute-a reveal img-wrap">
+        <img src="parede-cutelaria.jpg" alt="Parede de cutelaria J3A com centenas de facas artesanais" loading="lazy" />
       </div>
 
-      <!-- Text -->
-      <div class="reveal reveal-delay-1">
-        <p class="eyebrow mb-4">Cutelaria Artesanal</p>
-        <div class="copper-line copper-line-left"></div>
-        <h2 id="cutelaria-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-6">
-          Precisão e Exclusividade em cada lâmina.
-        </h2>
-        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed mb-8 text-[0.95rem]">
-          Feitas à mão para quem entende que o churrasco no Mato Grosso do Sul exige as melhores ferramentas. Cabos em materiais nobres, aço forjado de alta retenção de fio e designs únicos. Uma faca J3A não é um utensílio, é um legado.
-        </p>
-        <a href="https://wa.me/5567999999999?text=Olá!%20Gostaria%20de%20ver%20o%20catálogo%20de%20facas%20artesanais."
-           target="_blank" rel="noopener noreferrer"
-           class="btn-outline">
-          <i class="fa-solid fa-book-open"></i>
-          Ver Catálogo de Facas
-        </a>
+      <!-- B: facas na tábua — wide top-right -->
+      <div class="cute-cell cute-b reveal reveal-delay-1 img-wrap">
+        <img src="cutelaria-facas.jpg" alt="Coleção de facas artesanais sobre tábua em madeira nobre" loading="lazy" />
+      </div>
+
+      <!-- C: faca curva no suporte -->
+      <div class="cute-cell cute-c reveal reveal-delay-1 img-wrap">
+        <img src="faca-curva-suporte.jpg" alt="Faca curva artesanal sobre suporte de madeira" loading="lazy" />
+      </div>
+
+      <!-- D: facas personalizadas (Inter, Corinthians…) -->
+      <div class="cute-cell cute-d reveal reveal-delay-2 img-wrap">
+        <img src="facas-personalizadas.jpg" alt="Facas artesanais personalizadas — temáticas de times e pesca" loading="lazy" />
+      </div>
+
+      <!-- E: faca peixeira / cleaver -->
+      <div class="cute-cell cute-e reveal reveal-delay-2 img-wrap">
+        <img src="faca-cleaver.jpg" alt="Faca cleaver artesanal J3A em suporte de madeira" loading="lazy" />
       </div>
 
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Cutelaria Bento Grid ───────────────────────── */
+  .cute-bento {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 320px 260px;
+  }
+  .cute-cell { overflow: hidden; border-radius: 12px; }
+  .cute-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .cute-cell:hover img { transform: scale(1.05); }
+
+  .cute-a { grid-column: 1; grid-row: 1 / 3; }         /* tall left */
+  .cute-b { grid-column: 2 / 4; grid-row: 1; }         /* wide top-right */
+  .cute-c { grid-column: 2; grid-row: 2; }             /* bottom center */
+  .cute-d { grid-column: 3; grid-row: 2; }             /* bottom right 1 */
+  .cute-e { display: none; }                            /* hidden on desktop, show on mobile */
+
+  @media (max-width: 768px) {
+    .cute-bento {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .cute-a { grid-column: 1 / 3; grid-row: 1; height: 260px; }
+    .cute-b { grid-column: 1 / 3; grid-row: 2; height: 220px; }
+    .cute-c { grid-column: 1; grid-row: 3; height: 180px; }
+    .cute-d { grid-column: 2; grid-row: 3; height: 180px; }
+    .cute-e { display: block; grid-column: 1 / 3; grid-row: 4; height: 180px; }
+  }
+</style>
 
 
 <!-- ═══════════════════════════════════════════════════
