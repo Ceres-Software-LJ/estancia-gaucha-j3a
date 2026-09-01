@@ -610,11 +610,11 @@
   /* ── Cutelaria Bento Grid ───────────────────────── */
   .cute-bento {
     display: grid;
-    gap: 10px;
+    gap: 0;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 320px 260px;
   }
-  .cute-cell { overflow: hidden; border-radius: 12px; }
+  .cute-cell { overflow: hidden; border-radius: 0; }
   .cute-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
   .cute-cell:hover img { transform: scale(1.05); }
 
@@ -663,17 +663,17 @@
 
   <!-- Grade de fotos -->
   <div class="max-w-6xl mx-auto px-6 pt-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="reveal img-wrap rounded-xl overflow-hidden" style="height:280px;">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+      <div class="reveal img-wrap overflow-hidden" style="height:280px;">
         <img src="bebidas-grappa-variedades.jpg" alt="Grappas artesanais — Marcela, Funcho, Uva" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
       </div>
-      <div class="reveal reveal-delay-1 img-wrap rounded-xl overflow-hidden" style="height:280px;">
+      <div class="reveal reveal-delay-1 img-wrap overflow-hidden" style="height:280px;">
         <img src="bebidas-grappa-marcela.jpg" alt="Grappa com Marcela — produção artesanal" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
       </div>
-      <div class="reveal reveal-delay-2 img-wrap rounded-xl overflow-hidden" style="height:280px;">
+      <div class="reveal reveal-delay-2 img-wrap overflow-hidden" style="height:280px;">
         <img src="bebidas-licores-buchmann.jpg" alt="Licores finos Casa Buchmann — diversas variedades" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
       </div>
-      <div class="reveal reveal-delay-3 img-wrap rounded-xl overflow-hidden" style="height:280px;">
+      <div class="reveal reveal-delay-3 img-wrap overflow-hidden" style="height:280px;">
         <img src="bebidas-vinhos.jpg" alt="Vinhos finos Granja do Vale — Serra Gaúcha" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" />
       </div>
     </div>
