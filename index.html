@@ -1035,11 +1035,6 @@
     <source src="raizes-bg.mp4" type="video/mp4" />
   </video>
 
-  <!-- Decorative watermark -->
-  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style="z-index:1;" aria-hidden="true">
-    <span class="font-display font-bold text-[#B06500]"
-          style="font-size: clamp(8rem, 25vw, 18rem); opacity: 0.03; line-height:1;">J3A</span>
-  </div>
 
   <div class="relative z-10 max-w-2xl mx-auto text-center reveal">
     <p class="eyebrow mb-6">Nossa História</p>
@@ -1510,14 +1505,6 @@
     });
   }
 
-  /* ── 5. Raízes watermark parallax ────────────────────────────────── */
-  var watermark = document.querySelector('#raizes .absolute');
-  if (watermark) {
-    gsap.fromTo(watermark, { yPercent: 15 }, {
-      yPercent: -25, ease: 'none',
-      scrollTrigger: { trigger: '#raizes', start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-  }
 
   /* ── 6. J3A cursiva draw-on-scroll ───────────────────────────────── */
   var j3aSvg = document.getElementById('j3a-svg');
