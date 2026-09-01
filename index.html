@@ -382,10 +382,10 @@
       display: block;
     }
 
-    /* Knife SVG draw */
-    #knife-blade {
-      stroke-dasharray: 2000;
-      stroke-dashoffset: 2000;
+    /* J3A cursiva draw */
+    #j3a-j, #j3a-3, #j3a-a, #j3a-bar, #j3a-line {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
     }
 
     /* Phase 3 — Eyebrow fade-up (fora do hero) */
@@ -461,7 +461,7 @@
         transition: none !important;
       }
       .word-split-done .word { clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
-      #knife-blade { stroke-dashoffset: 0 !important; }
+      #j3a-j, #j3a-3, #j3a-a, #j3a-bar, #j3a-line { stroke-dashoffset: 0 !important; }
       .eyebrow-anim { opacity: 1 !important; transform: none !important; }
       .reveal { transform: translateY(28px); }
       .btn-wa { animation: none; }
@@ -1052,33 +1052,30 @@
     </p>
   </div>
 
-  <!-- Knife blade SVG draw-on-scroll -->
+  <!-- J3A cursiva draw-on-scroll -->
   <div class="relative z-10 flex justify-center mt-20" aria-hidden="true">
-    <svg id="knife-svg" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg"
-         style="width:min(700px,88vw); overflow:visible;">
-      <!-- blade body -->
-      <path id="knife-blade"
-        fill="none"
-        stroke="#B06500"
-        stroke-width="1.4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M 70,62
-           C 70,62 80,58 100,56
-           C 220,48 480,40 730,56
-           L 746,62
-           L 730,68
-           C 480,80 220,74 100,68
-           C 80,66 70,62 70,62 Z"
-      />
-      <!-- handle guard -->
-      <line x1="70" y1="44" x2="70" y2="80"
-            stroke="#B06500" stroke-width="2.5" stroke-linecap="round"
-            id="knife-guard" style="opacity:0"/>
-      <!-- spine decorative etch lines -->
-      <line x1="100" y1="52" x2="500" y2="44"
-            stroke="#B06500" stroke-width="0.5" stroke-linecap="round" opacity="0.3"
-            id="knife-spine" style="stroke-dasharray:400;stroke-dashoffset:400"/>
+    <svg id="j3a-svg" viewBox="0 0 540 160" xmlns="http://www.w3.org/2000/svg"
+         style="width:min(540px,84vw); overflow:visible;">
+      <!-- J -->
+      <path id="j3a-j" fill="none" stroke="#B06500" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round"
+            d="M 72,30 C 84,18 112,16 114,32 L 108,114 Q 104,142 80,138 Q 60,134 63,116"/>
+      <!-- 3 -->
+      <path id="j3a-3" fill="none" stroke="#B06500" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round"
+            d="M 158,36 Q 228,14 224,60 Q 221,80 188,83 Q 222,86 224,118 Q 224,146 158,138"/>
+      <!-- A body -->
+      <path id="j3a-a" fill="none" stroke="#B06500" stroke-width="2.3"
+            stroke-linecap="round" stroke-linejoin="round"
+            d="M 308,140 L 372,22 L 436,140"/>
+      <!-- A crossbar -->
+      <path id="j3a-bar" fill="none" stroke="#B06500" stroke-width="2.3"
+            stroke-linecap="round"
+            d="M 330,97 L 414,97"/>
+      <!-- decorative underline -->
+      <path id="j3a-line" fill="none" stroke="#B06500" stroke-width="0.8" opacity="0.45"
+            stroke-linecap="round"
+            d="M 55,150 Q 248,158 485,150"/>
     </svg>
   </div>
 
@@ -1522,31 +1519,34 @@
     });
   }
 
-  /* ── 6. Knife SVG draw-on-scroll ─────────────────────────────────── */
-  var knifeBlade = document.getElementById('knife-blade');
-  var knifeSpine = document.getElementById('knife-spine');
-  var knifeGuard = document.getElementById('knife-guard');
-  if (knifeBlade) {
-    var len = knifeBlade.getTotalLength();
-    gsap.set(knifeBlade, { strokeDasharray: len, strokeDashoffset: len });
-    gsap.to(knifeBlade, {
-      strokeDashoffset: 0,
-      ease: 'power2.inOut',
-      scrollTrigger: { trigger: '#knife-svg', start: 'top 80%', end: 'center 40%', scrub: 1.2 },
+  /* ── 6. J3A cursiva draw-on-scroll ───────────────────────────────── */
+  var j3aSvg = document.getElementById('j3a-svg');
+  if (j3aSvg) {
+    var paths = ['j3a-j', 'j3a-3', 'j3a-a', 'j3a-bar', 'j3a-line'].map(function(id) {
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    paths.forEach(function(p) {
+      var len = p.getTotalLength();
+      gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
     });
-  }
-  if (knifeSpine) {
-    gsap.to(knifeSpine, {
-      strokeDashoffset: 0,
-      ease: 'none',
-      scrollTrigger: { trigger: '#knife-svg', start: 'top 75%', end: 'center 35%', scrub: 1.5 },
+
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#j3a-svg',
+        start: 'top 82%',
+        end: 'bottom 28%',
+        scrub: 1.4,
+      }
     });
-  }
-  if (knifeGuard) {
-    ScrollTrigger.create({
-      trigger: '#knife-svg', start: 'top 78%', once: true,
-      onEnter: () => gsap.to(knifeGuard, { opacity: 0.5, duration: 0.4, ease: 'power2.out', delay: 0.1 }),
+
+    /* each letter gets ~25% of the timeline, underline last 10% */
+    paths.slice(0, 4).forEach(function(p, i) {
+      tl.to(p, { strokeDashoffset: 0, ease: 'power2.inOut', duration: 1 }, i * 0.8);
     });
+    if (paths[4]) {
+      tl.to(paths[4], { strokeDashoffset: 0, ease: 'power1.inOut', duration: 0.6 }, 3.2);
+    }
   }
 
   /* ── 7. Counter animation ─────────────────────────────────────────── */
