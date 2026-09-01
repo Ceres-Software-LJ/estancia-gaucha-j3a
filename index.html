@@ -1061,6 +1061,95 @@
 
 
 <!-- ═══════════════════════════════════════════════════
+     SEÇÃO 5B · QUEM SOMOS
+═══════════════════════════════════════════════════ -->
+<section id="quem-somos" class="py-28 px-6 bg-[#181818] overflow-hidden" aria-labelledby="qs-title">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+      <!-- Foto — esquerda -->
+      <div class="reveal order-1 md:order-1 qs-foto-wrap">
+        <div class="qs-foto-inner">
+          <img
+            src="familia.jpg"
+            alt="A família J3A Estância Gaúcha na loja em Campo Grande"
+            class="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+          <!-- badge flutante -->
+          <div class="qs-badge reveal reveal-delay-2">
+            <i class="fa-solid fa-heart text-[#B06500] text-xs mb-1"></i>
+            <span class="font-body text-[0.6rem] tracking-widest uppercase text-[#F5F5F0]/70">Negócio familiar</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto — direita -->
+      <div class="reveal reveal-delay-1 order-2 md:order-2">
+        <p class="eyebrow mb-4">Quem Somos</p>
+        <div class="copper-line copper-line-left"></div>
+        <h2 id="qs-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-6">
+          Uma parceria, uma mudança,<br>um sonho realizado.
+        </h2>
+        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-5">
+          A J3A nasceu rápido — na força da parceria e do acreditar. Uma família que deixou o Rio Grande do Sul, cruzou o Brasil e chegou em Campo Grande com malas, coragem e a certeza de que o melhor do Sul merecia um endereço aqui no Centro-Oeste.
+        </p>
+        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-8">
+          Cada faca forjada, cada garrafa na prateleira, cada cliente que volta carrega o cuidado de quem construiu algo do zero — junto, em família. Campo Grande ganhou um pedacinho da Serra Gaúcha, e nós ganhamos uma nova casa.
+        </p>
+        <!-- quote em destaque -->
+        <blockquote class="border-l-2 border-[#B06500] pl-5 mb-8">
+          <p class="font-display text-[1.05rem] italic text-[#F5F5F0]/80 leading-snug">
+            "A loja é nossa, mas o coração é de todo Campo Grande."
+          </p>
+        </blockquote>
+        <a href="https://wa.me/5567999999999?text=Olá!%20Quero%20conhecer%20a%20J3A%20Estância%20Gaúcha!"
+           target="_blank" rel="noopener noreferrer"
+           class="btn-wa">
+          <i class="fa-brands fa-whatsapp"></i>
+          Venha nos Conhecer
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .qs-foto-wrap {
+    position: relative;
+  }
+  .qs-foto-inner {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: clamp(320px, 48vw, 520px);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+  }
+  .qs-foto-inner img {
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .qs-foto-inner:hover img { transform: scale(1.04); }
+
+  /* badge flutante */
+  .qs-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(18,18,18,0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(176,101,0,0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+</style>
+
+
+<!-- ═══════════════════════════════════════════════════
      SEÇÃO 6 · DEPOIMENTOS / PROVA SOCIAL
 ═══════════════════════════════════════════════════ -->
 <section id="depoimentos" class="py-28 px-6 bg-[#1E1E1E]" aria-labelledby="dep-title">
