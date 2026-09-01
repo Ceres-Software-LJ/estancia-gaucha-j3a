@@ -18,7 +18,6 @@
   <!-- GSAP + ScrollTrigger + ScrollSmoother -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollSmoother.min.js"></script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -56,6 +55,7 @@
 
     html, body {
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -575,11 +575,6 @@
 
   </div>
 </header>
-
-<!-- ── ScrollSmoother wrapper ── -->
-<div id="smooth-wrapper">
-<div id="smooth-content">
-
 
 <!-- ═══════════════════════════════════════════════════
      HERO
@@ -1590,10 +1585,6 @@
   </div>
 </footer>
 
-</div><!-- /smooth-content -->
-</div><!-- /smooth-wrapper -->
-
-
 <!-- ═══════════════════════════════════════════════════
      WHATSAPP FLUTUANTE
 ═══════════════════════════════════════════════════ -->
@@ -1777,16 +1768,7 @@
 <!-- ── GSAP ScrollTrigger section transitions ─────────────────────────── -->
 <script>
 (function () {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-  /* ScrollSmoother — smooth nativo sem fake scrollbar */
-  var smoother = ScrollSmoother.create({
-    wrapper:  '#smooth-wrapper',
-    content:  '#smooth-content',
-    smooth:   1.4,
-    effects:  true,
-    smoothTouch: 0.1,
-  });
+  gsap.registerPlugin(ScrollTrigger);
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) return;
