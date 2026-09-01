@@ -18,7 +18,6 @@
   <!-- GSAP + ScrollTrigger + MorphSVG -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/flubber@0.4.2/build/flubber.min.js"></script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -382,11 +381,6 @@
       display: block;
     }
 
-    /* J3A cursiva draw */
-    #j3a-j, #j3a-3, #j3a-a, #j3a-bar, #j3a-line {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-    }
 
     /* Phase 3 — Eyebrow fade-up (fora do hero) */
     .eyebrow-anim {
@@ -461,7 +455,6 @@
         transition: none !important;
       }
       .word-split-done .word { clip-path: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
-      #j3a-j, #j3a-3, #j3a-a, #j3a-bar, #j3a-line { stroke-dashoffset: 0 !important; }
       .eyebrow-anim { opacity: 1 !important; transform: none !important; }
       .reveal { transform: translateY(28px); }
       .btn-wa { animation: none; }
@@ -966,30 +959,6 @@
       </a>
     </div>
 
-    <!-- J3A Morph Animation -->
-    <div class="flex justify-center mt-16" aria-hidden="true">
-      <svg id="j3a-morph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" style="max-width:520px;width:90%;">
-        <defs>
-          <linearGradient id="jg1" x1="200" y1="300" x2="255" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#f8dbb9"/>
-            <stop offset="0.5" stop-color="#B06500"/>
-          </linearGradient>
-          <linearGradient id="jg2" x1="340" y1="42" x2="240" y2="125" gradientUnits="userSpaceOnUse">
-            <stop offset="0.1" stop-color="#f8dbb9"/>
-            <stop offset="0.5" stop-color="#B06500"/>
-          </linearGradient>
-          <linearGradient id="jg3" x1="488" y1="268" x2="572" y2="127" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#f8dbb9"/>
-            <stop offset="0.5" stop-color="#B06500"/>
-          </linearGradient>
-        </defs>
-        <!-- Starting shapes as <path> so flubber can morph them -->
-        <path id="shp-tri" fill="url(#jg1)" d="M241,242 L283,157 L326,242 Z"/>
-        <path id="shp-sq"  fill="url(#jg2)" d="M363,157 L448,157 L448,242 L363,242 Z"/>
-        <path id="shp-ci"  fill="url(#jg3)" d="M530,157.5 C553.47,157.5 572.5,176.53 572.5,200 C572.5,223.47 553.47,242.5 530,242.5 C506.53,242.5 487.5,223.47 487.5,200 C487.5,176.53 506.53,157.5 530,157.5 Z"/>
-      </svg>
-    </div>
-
   </div>
 </section>
 
@@ -1047,32 +1016,6 @@
     </p>
   </div>
 
-  <!-- J3A cursiva draw-on-scroll -->
-  <div class="relative z-10 flex justify-center mt-20" aria-hidden="true">
-    <svg id="j3a-svg" viewBox="0 0 540 160" xmlns="http://www.w3.org/2000/svg"
-         style="width:min(540px,84vw); overflow:visible;">
-      <!-- J -->
-      <path id="j3a-j" fill="none" stroke="#B06500" stroke-width="2.3"
-            stroke-linecap="round" stroke-linejoin="round"
-            d="M 72,30 C 84,18 112,16 114,32 L 108,114 Q 104,142 80,138 Q 60,134 63,116"/>
-      <!-- 3 -->
-      <path id="j3a-3" fill="none" stroke="#B06500" stroke-width="2.3"
-            stroke-linecap="round" stroke-linejoin="round"
-            d="M 158,36 Q 228,14 224,60 Q 221,80 188,83 Q 222,86 224,118 Q 224,146 158,138"/>
-      <!-- A body -->
-      <path id="j3a-a" fill="none" stroke="#B06500" stroke-width="2.3"
-            stroke-linecap="round" stroke-linejoin="round"
-            d="M 308,140 L 372,22 L 436,140"/>
-      <!-- A crossbar -->
-      <path id="j3a-bar" fill="none" stroke="#B06500" stroke-width="2.3"
-            stroke-linecap="round"
-            d="M 330,97 L 414,97"/>
-      <!-- decorative underline -->
-      <path id="j3a-line" fill="none" stroke="#B06500" stroke-width="0.8" opacity="0.45"
-            stroke-linecap="round"
-            d="M 55,150 Q 248,158 485,150"/>
-    </svg>
-  </div>
 
 </section>
 
@@ -1506,37 +1449,7 @@
   }
 
 
-  /* ── 6. J3A cursiva draw-on-scroll ───────────────────────────────── */
-  var j3aSvg = document.getElementById('j3a-svg');
-  if (j3aSvg) {
-    var paths = ['j3a-j', 'j3a-3', 'j3a-a', 'j3a-bar', 'j3a-line'].map(function(id) {
-      return document.getElementById(id);
-    }).filter(Boolean);
-
-    paths.forEach(function(p) {
-      var len = p.getTotalLength();
-      gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
-    });
-
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#j3a-svg',
-        start: 'top 82%',
-        end: 'bottom 28%',
-        scrub: 1.4,
-      }
-    });
-
-    /* each letter gets ~25% of the timeline, underline last 10% */
-    paths.slice(0, 4).forEach(function(p, i) {
-      tl.to(p, { strokeDashoffset: 0, ease: 'power2.inOut', duration: 1 }, i * 0.8);
-    });
-    if (paths[4]) {
-      tl.to(paths[4], { strokeDashoffset: 0, ease: 'power1.inOut', duration: 0.6 }, 3.2);
-    }
-  }
-
-  /* ── 7. Counter animation ─────────────────────────────────────────── */
+  /* ── 6. Counter animation ─────────────────────────────────────────── */
   document.querySelectorAll('.counter').forEach(function(el) {
     var target = parseInt(el.dataset.target, 10);
     var proxy  = { val: 0 };
@@ -1584,46 +1497,6 @@
 })();
 </script>
 
-<script>
-// J3A shape → letter morph (flubber)
-(function() {
-  if (typeof flubber === 'undefined' || typeof gsap === 'undefined') return;
-
-  var triD = 'M241,242 L283,157 L326,242 Z';
-  var sqD  = 'M363,157 L448,157 L448,242 L363,242 Z';
-  var ciD  = 'M530,157.5 C553.47,157.5 572.5,176.53 572.5,200 C572.5,223.47 553.47,242.5 530,242.5 C506.53,242.5 487.5,223.47 487.5,200 C487.5,176.53 506.53,157.5 530,157.5 Z';
-  var jD  = 'M248,127 L326,127 L326,143 L306,143 L306,248 Q306,272 278,272 Q250,272 244,252 L258,244 Q263,258 278,258 Q290,258 290,248 L290,143 L248,143 Z';
-  var d3D = 'M368,127 L428,127 Q450,127 450,158 Q450,184 428,191 Q450,198 450,234 Q450,270 408,270 Q380,270 368,250 L382,242 Q390,256 408,256 Q432,256 432,232 Q432,205 404,205 L388,205 L388,188 L404,188 Q428,188 428,160 Q428,141 408,141 L368,141 Z';
-  var aD  = 'M530,127 L578,268 L560,268 L547,224 L513,224 L500,268 L482,268 Z';
-
-  var opts = { maxSegmentLength: 3 };
-  var i1f = flubber.interpolate(triD, jD,  opts);
-  var i2f = flubber.interpolate(sqD,  d3D, opts);
-  var i3f = flubber.interpolate(ciD,  aD,  opts);
-  var i1r = flubber.interpolate(jD,   triD, opts);
-  var i2r = flubber.interpolate(d3D,  sqD,  opts);
-  var i3r = flubber.interpolate(aD,   ciD,  opts);
-
-  var tri = document.querySelector('#shp-tri');
-  var sq  = document.querySelector('#shp-sq');
-  var ci  = document.querySelector('#shp-ci');
-
-  var DUR = 0.7, HOLD = 0.8;
-
-  function j3aLoop() {
-    var p1={v:0}, p2={v:0}, p3={v:0}, r1={v:0}, r2={v:0}, r3={v:0};
-    gsap.timeline({ onComplete: function() { setTimeout(j3aLoop, HOLD * 1000); } })
-      .to(p1, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { tri.setAttribute('d', i1f(p1.v)); } })
-      .to(p2, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { sq.setAttribute('d',  i2f(p2.v)); } })
-      .to(p3, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { ci.setAttribute('d',  i3f(p3.v)); } })
-      .to(r1, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { tri.setAttribute('d', i1r(r1.v)); } }, '+=' + HOLD)
-      .to(r2, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { sq.setAttribute('d',  i2r(r2.v)); } })
-      .to(r3, { v:1, duration:DUR, ease:'power2.inOut', onUpdate: function() { ci.setAttribute('d',  i3r(r3.v)); } });
-  }
-
-  setTimeout(j3aLoop, 1500);
-})();
-</script>
 
 </body>
 </html>
