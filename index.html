@@ -620,27 +620,27 @@
     <div class="cute-bento">
 
       <!-- A: parede de facas — tall left -->
-      <div class="cute-cell cute-a reveal img-wrap">
+      <div class="cute-cell cute-a">
         <img src="parede-cutelaria.jpg" alt="Parede de cutelaria J3A com centenas de facas artesanais" loading="lazy" />
       </div>
 
       <!-- B: facas na tábua — wide top-right -->
-      <div class="cute-cell cute-b reveal reveal-delay-1 img-wrap">
+      <div class="cute-cell cute-b">
         <img src="cutelaria-facas.jpg" alt="Coleção de facas artesanais sobre tábua em madeira nobre" loading="lazy" />
       </div>
 
       <!-- C: faca curva no suporte -->
-      <div class="cute-cell cute-c reveal reveal-delay-1 img-wrap">
+      <div class="cute-cell cute-c">
         <img src="faca-curva-suporte.jpg" alt="Faca curva artesanal sobre suporte de madeira" loading="lazy" />
       </div>
 
       <!-- D: facas personalizadas (Inter, Corinthians…) -->
-      <div class="cute-cell cute-d reveal reveal-delay-2 img-wrap">
+      <div class="cute-cell cute-d">
         <img src="facas-personalizadas.jpg" alt="Facas artesanais personalizadas — temáticas de times e pesca" loading="lazy" />
       </div>
 
       <!-- E: faca peixeira / cleaver -->
-      <div class="cute-cell cute-e reveal reveal-delay-2 img-wrap">
+      <div class="cute-cell cute-e">
         <img src="faca-cleaver.jpg" alt="Faca cleaver artesanal J3A em suporte de madeira" loading="lazy" />
       </div>
 
@@ -652,24 +652,41 @@
   /* ── Cutelaria Bento Grid ───────────────────────── */
   .cute-bento {
     display: grid;
-    gap: 0;
+    gap: 10px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 320px 260px;
   }
-  .cute-cell { overflow: hidden; border-radius: 0; }
-  .cute-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-  .cute-cell:hover img { transform: scale(1.05); }
+  .cute-cell {
+    overflow: hidden;
+    border-radius: 16px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  .cute-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.5s ease;
+    filter: brightness(0.9);
+    will-change: transform;
+  }
+  .cute-cell:hover img {
+    filter: brightness(1.05);
+  }
 
-  .cute-a { grid-column: 1; grid-row: 1 / 3; }         /* tall left */
-  .cute-b { grid-column: 2 / 4; grid-row: 1; }         /* wide top-right */
-  .cute-c { grid-column: 2; grid-row: 2; }             /* bottom center */
-  .cute-d { grid-column: 3; grid-row: 2; }             /* bottom right 1 */
-  .cute-e { display: none; }                            /* hidden on desktop, show on mobile */
+  .cute-a { grid-column: 1; grid-row: 1 / 3; }
+  .cute-b { grid-column: 2 / 4; grid-row: 1; }
+  .cute-c { grid-column: 2; grid-row: 2; }
+  .cute-d { grid-column: 3; grid-row: 2; }
+  .cute-e { display: none; }
 
   @media (max-width: 768px) {
     .cute-bento {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
+      gap: 8px;
     }
     .cute-a { grid-column: 1 / 3; grid-row: 1; height: 260px; }
     .cute-b { grid-column: 1 / 3; grid-row: 2; height: 220px; }
@@ -1772,7 +1789,51 @@
   })();
 
 
-  /* ── 8. Feature cards — GSAP batch wave entrance ─────────────────── */
+  /* ── 8. Cutelaria bento — entrada staggerada + parallax mouse ─────── */
+  (function() {
+    var cells = gsap.utils.toArray('.cute-cell');
+    if (!cells.length) return;
+
+    /* ordem de entrada: A (tall left), B (wide top), C, D */
+    var order = ['.cute-a', '.cute-b', '.cute-c', '.cute-d', '.cute-e'].map(function(s) {
+      return document.querySelector(s);
+    }).filter(Boolean);
+
+    ScrollTrigger.create({
+      trigger: '.cute-bento',
+      start: 'top 80%',
+      once: true,
+      onEnter: function() {
+        gsap.to(order, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.85,
+          stagger: 0.12,
+          ease: 'power3.out',
+          clearProps: 'transform'
+        });
+      }
+    });
+
+    /* Parallax suave da imagem ao mover o mouse sobre o card */
+    cells.forEach(function(cell) {
+      var img = cell.querySelector('img');
+      if (!img) return;
+      cell.addEventListener('mousemove', function(e) {
+        var r  = cell.getBoundingClientRect();
+        var dx = (e.clientX - r.left) / r.width  - 0.5;
+        var dy = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(img, { x: dx * -12, y: dy * -10, scale: 1.07, duration: 0.4, ease: 'power2.out', overwrite: true });
+      });
+      cell.addEventListener('mouseleave', function() {
+        gsap.to(img, { x: 0, y: 0, scale: 1, duration: 0.6, ease: 'power3.out', overwrite: true });
+      });
+    });
+  })();
+
+
+  /* ── 10. Feature cards — GSAP batch wave entrance ─────────────────── */
   var featureCards = gsap.utils.toArray('#experiencia .feature-card');
   if (featureCards.length) {
     featureCards.forEach(function(el) { if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el); });
@@ -1785,7 +1846,7 @@
     });
   }
 
-  /* ── 9. Product cards — stagger with subtle rotation ─────────────── */
+  /* ── 11. Product cards — stagger with subtle rotation ─────────────── */
   var productCards = gsap.utils.toArray('#catalogo .product-card');
   if (productCards.length) {
     productCards.forEach(function(el) { if (typeof revealObserver !== 'undefined') revealObserver.unobserve(el); });
