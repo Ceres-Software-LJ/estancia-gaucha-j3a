@@ -154,11 +154,23 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(0,0,0,0.55) 0%,
-        rgba(10,6,0,0.70) 55%,
-        rgba(26,26,26,0.95) 85%,
+        rgba(0,0,0,0.45) 0%,
+        rgba(10,6,0,0.65) 45%,
+        rgba(26,26,26,0.92) 72%,
+        #1A1A1A 88%,
         #1A1A1A 100%
       );
+    }
+    /* bleed que garante zero gap entre hero e próxima seção */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, #1A1A1A);
+      pointer-events: none;
+      z-index: 5;
     }
 
     /* ── Copper accent line ─────────────────────────── */
