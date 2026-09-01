@@ -155,22 +155,19 @@
       background: linear-gradient(
         to bottom,
         rgba(0,0,0,0.45) 0%,
-        rgba(10,6,0,0.65) 45%,
-        rgba(26,26,26,0.92) 72%,
-        #1A1A1A 88%,
+        rgba(10,6,0,0.65) 40%,
+        rgba(26,26,26,0.90) 65%,
+        #1A1A1A 80%,
         #1A1A1A 100%
       );
     }
-    /* bleed que garante zero gap entre hero e próxima seção */
-    #hero::after {
-      content: '';
+    .hero-fade-bottom {
       position: absolute;
-      bottom: -2px;
-      left: 0; right: 0;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, #1A1A1A);
+      bottom: 0; left: 0; right: 0;
+      height: 160px;
+      background: linear-gradient(to bottom, transparent 0%, #1A1A1A 100%);
       pointer-events: none;
-      z-index: 5;
+      z-index: 20;
     }
 
     /* ── Copper accent line ─────────────────────────── */
@@ -589,12 +586,12 @@
 <!-- ═══════════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 bg-[#1A1A1A]" aria-label="Seção principal">
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 bg-[#1A1A1A] overflow-hidden" aria-label="Seção principal">
 
   <!-- Vídeo de fundo — coloque o arquivo na pasta C:\CUTELARIA\ e ajuste o src abaixo -->
   <video
     class="hero-video"
-    autoplay muted loop playsinline
+    autoplay muted loop playsinline preload="auto"
     aria-hidden="true"
   >
     <source src="hero.mp4" type="video/mp4" />
@@ -614,10 +611,13 @@
   </div>
 
   <!-- Scroll cue -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" aria-hidden="true">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" style="z-index:25;" aria-hidden="true">
     <span class="font-body text-[0.6rem] tracking-[0.3em] uppercase">Explore</span>
     <i class="fa-solid fa-chevron-down text-[#B06500] text-xs animate-bounce"></i>
   </div>
+
+  <!-- fade premium que cobre a borda do vídeo -->
+  <div class="hero-fade-bottom" aria-hidden="true"></div>
 
 </section>
 
