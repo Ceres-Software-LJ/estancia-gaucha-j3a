@@ -1084,12 +1084,22 @@
   <div class="max-w-6xl mx-auto">
     <div class="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-      <!-- Foto — esquerda -->
+      <!-- Fotos — esquerda -->
       <div class="reveal order-1 md:order-1 qs-foto-wrap">
+        <!-- Foto principal: família -->
         <div class="qs-foto-inner">
           <img
-            src="familia.jpg"
-            alt="A família J3A Estância Gaúcha na loja em Campo Grande"
+            src="qs-foto2.jpeg"
+            alt="Família J3A Estância Gaúcha"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+        <!-- Foto secundária: Gisele e sócia na loja -->
+        <div class="qs-foto-inset">
+          <img
+            src="qs-foto1.jpeg"
+            alt="Gisele e sócia na J3A Estância Gaúcha Cutelaria"
             class="w-full h-full object-cover object-top"
             loading="lazy"
           />
@@ -1101,18 +1111,21 @@
         <p class="eyebrow mb-4">Quem Somos</p>
         <div class="copper-line copper-line-left"></div>
         <h2 id="qs-title" class="font-display text-3xl lg:text-4xl font-bold text-[#F5F5F0] leading-tight mb-6">
-          Uma parceria, uma mudança, um sonho realizado.
+          Onde um sonho encontrou um Propósito.
         </h2>
         <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-5 text-justify hyphens-auto">
-          A J3A nasceu rápido, na força da parceria e do acreditar. Uma família que deixou o Rio Grande do Sul, cruzou o Brasil e chegou em Campo Grande com malas, coragem e a certeza de que o melhor do Sul merecia um endereço aqui no Centro-Oeste.
+          A J3A Estância Gaúcha nasceu de uma paixão que já fazia parte da nossa família: a cultura gaúcha, as tradições do Sul e o amor por tudo aquilo que carrega história e significado.
+        </p>
+        <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-5 text-justify hyphens-auto">
+          Em 2024, durante uma viagem em família a Gramado, tivemos a oportunidade de conhecer a Gisele. Entre conversas, sonhos e ideias, nasceu o desejo de trazer para o Mato Grosso do Sul um pedacinho da essência gaúcha que tanto admiramos. Em março de 2025, Gisele veio para Campo Grande e juntos começamos a transformar aquele sonho em realidade.
         </p>
         <p class="font-body font-300 text-[#F5F5F0]/65 leading-relaxed text-[0.95rem] mb-8 text-justify hyphens-auto">
-          Cada faca forjada, cada garrafa na prateleira, cada cliente que volta carrega o cuidado de quem construiu algo do zero, junto, em família. Campo Grande ganhou um pedacinho da Serra Gaúcha, e nós ganhamos uma nova casa.
+          No dia 12 de dezembro de 2025, abrimos oficialmente as portas da J3A. Hoje, celebramos 9 meses de caminhada com o coração cheio de gratidão por tudo que Deus tem feito — e a certeza de que essa história está apenas começando.
         </p>
         <!-- quote em destaque -->
         <blockquote class="border-l-2 border-[#B06500] pl-5 mb-8">
           <p class="font-display text-[1.05rem] italic text-[#F5F5F0]/80 leading-snug">
-            "A loja é nossa, mas o coração é de todo Campo Grande."
+            "O que começou como um sonho, hoje é realidade."
           </p>
         </blockquote>
         <a href="https://wa.me/5567999999999?text=Olá!%20Quero%20conhecer%20a%20J3A%20Estância%20Gaúcha!"
@@ -1130,6 +1143,8 @@
 <style>
   .qs-foto-wrap {
     position: relative;
+    padding-bottom: 24px;
+    padding-right: 24px;
   }
   .qs-foto-inner {
     position: relative;
@@ -1142,6 +1157,25 @@
     transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
   }
   .qs-foto-inner:hover img { transform: scale(1.04); }
+
+  /* foto inset sobreposta */
+  .qs-foto-inset {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 42%;
+    height: 200px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.65);
+    border: 3px solid #181818;
+  }
+  .qs-foto-inset img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .qs-foto-inset:hover img { transform: scale(1.05); }
 
   /* badge flutante */
   .qs-badge {
