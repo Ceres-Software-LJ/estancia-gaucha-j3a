@@ -31,8 +31,6 @@
   <link rel="icon" type="image/png" href="assets/images/logo/J3A.png" />
   <link rel="apple-touch-icon" href="assets/images/logo/J3A.png" />
 
-  <!-- Preload hero video -->
-  <link rel="preload" as="video" href="assets/videos/hero.mp4" type="video/mp4" />
 
   <!-- JSON-LD LocalBusiness -->
   <script type="application/ld+json">
@@ -815,7 +813,7 @@
   <!-- Vídeo de fundo — coloque o arquivo na pasta C:\CUTELARIA\ e ajuste o src abaixo -->
   <video
     class="hero-video"
-    autoplay muted loop playsinline preload="auto"
+    autoplay muted loop playsinline preload="metadata"
     aria-hidden="true"
   >
     <source src="assets/videos/hero.mp4" type="video/mp4" />
