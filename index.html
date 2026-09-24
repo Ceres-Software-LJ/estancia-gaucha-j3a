@@ -2127,9 +2127,12 @@
 
 <!-- ── GSAP ScrollTrigger section transitions ─────────────────────────── -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
 (function () {
   gsap.registerPlugin(ScrollTrigger);
+
+  // Avoid re-measuring on mobile virtual keyboard / address bar resize
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) return;
@@ -2346,7 +2349,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 })();
-}); // DOMContentLoaded
+}); // window.load
 </script>
 
 
