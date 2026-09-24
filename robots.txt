@@ -1,4 +1,26 @@
+# J3A Estância Gaúcha Cutelaria
+# https://www.cutelariaestanciagaucha.com.br
+
 User-agent: *
+Allow: /
+
+# Bloquear arquivos desnecessários para rastreamento
+Disallow: /assets/videos/
+
+# Crawlers de IA (GEO — permitir leitura do llms.txt)
+User-agent: GPTBot
+Allow: /llms.txt
+Disallow: /assets/videos/
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+Disallow: /assets/videos/
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+Disallow: /assets/videos/
+
+User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://www.cutelariaestanciagaucha.com.br/sitemap.xml

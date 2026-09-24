@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <!-- Página principal -->
   <url>
     <loc>https://www.cutelariaestanciagaucha.com.br/</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+
+    <!-- Imagens indexáveis -->
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/logo/J3A.webp</image:loc>
+      <image:title>Logo J3A Estância Gaúcha Cutelaria</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/cutelaria/parede-cutelaria.webp</image:loc>
+      <image:title>Parede de facas artesanais J3A – Campo Grande MS</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/cutelaria/faca-cleaver.webp</image:loc>
+      <image:title>Faca cleaver artesanal J3A Estância Gaúcha</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/cutelaria/facas-personalizadas.webp</image:loc>
+      <image:title>Facas personalizadas J3A – presentes gaúchos</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/bebidas/bebidas-vinhos.webp</image:loc>
+      <image:title>Vinhos da Serra Gaúcha – Empório J3A Campo Grande</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/emporio/queijo.webp</image:loc>
+      <image:title>Queijos maturados gaúchos – J3A Estância Gaúcha</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/kits/kit1.webp</image:loc>
+      <image:title>Kit de presente gaúcho – faca, vinho e queijo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.cutelariaestanciagaucha.com.br/assets/images/experiencia/exp1.webp</image:loc>
+      <image:title>Espaço de degustação premium J3A – Campo Grande MS</image:title>
+    </image:image>
+
+    <!-- Vídeo principal -->
+    <video:video>
+      <video:thumbnail_loc>https://www.cutelariaestanciagaucha.com.br/assets/images/logo/J3A.webp</video:thumbnail_loc>
+      <video:title>J3A Estância Gaúcha Cutelaria – Cutelaria artesanal e empório gaúcho em Campo Grande MS</video:title>
+      <video:description>Facas artesanais, kits de presente, queijos, vinhos e produtos gaúchos. Entregamos para todo o Brasil.</video:description>
+      <video:content_loc>https://www.cutelariaestanciagaucha.com.br/assets/videos/hero.mp4</video:content_loc>
+    </video:video>
   </url>
+
 </urlset>
