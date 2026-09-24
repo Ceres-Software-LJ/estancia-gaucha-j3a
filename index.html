@@ -545,16 +545,30 @@
     /* ── Mobile nav ─────────────────────────────────── */
     .mobile-nav-link {
       font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 500;
-      color: rgba(245,245,240,0.75);
+      color: rgba(245,245,240,0.70);
       text-decoration: none;
-      padding: 0.65rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
       transition: color 0.2s ease, padding-left 0.2s ease;
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
-    .mobile-nav-link:hover { color: #F5F5F0; padding-left: 6px; }
+    .mobile-nav-link::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #B06500;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      flex-shrink: 0;
+    }
+    .mobile-nav-link:hover { color: #F5F5F0; padding-left: 4px; }
+    .mobile-nav-link:hover::before { opacity: 1; }
 
     #mobile-menu.open { pointer-events: auto; }
     #mobile-menu.open #menu-overlay { opacity: 1; }
@@ -638,15 +652,13 @@
   <!-- Overlay escuro -->
   <div id="menu-overlay" class="absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-300"></div>
   <!-- Painel -->
-  <nav id="menu-panel" class="relative ml-auto w-72 max-w-[85vw] h-full bg-[#141414] flex flex-col pt-24 pb-10 px-8 translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+  <nav id="menu-panel" class="relative ml-auto w-80 max-w-[88vw] h-full bg-[#141414] flex flex-col pt-20 pb-10 px-7 translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
     <!-- Fechar -->
-    <button id="menu-close" class="absolute top-5 right-5 text-[#F5F5F0]/60 hover:text-[#F5F5F0] transition-colors" aria-label="Fechar menu">
-      <i class="fa-solid fa-xmark text-xl"></i>
+    <button id="menu-close" class="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-[#F5F5F0]/70 hover:text-[#F5F5F0] transition-all" aria-label="Fechar menu">
+      <i class="fa-solid fa-xmark text-base"></i>
     </button>
-    <!-- Logo pequena -->
-    <img src="J3A.png" alt="J3A" class="h-12 w-auto object-contain mb-10 opacity-80" />
     <!-- Links -->
-    <div class="flex flex-col gap-1">
+    <div class="flex flex-col">
       <a href="#cutelaria"   class="mobile-nav-link">Cutelaria</a>
       <a href="#bebidas"     class="mobile-nav-link">Empório</a>
       <a href="#kits"        class="mobile-nav-link">Kits</a>
