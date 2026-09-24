@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "sharp": "^0.35.4"
+  },
+  "name": "cutelaria",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "detect-libc": "^2.1.2",
+    "semver": "^7.8.5",
+    "tslib": "^2.8.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ceres-Software-LJ/estancia-gaucha-j3a.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ceres-Software-LJ/estancia-gaucha-j3a/issues"
+  },
+  "homepage": "https://github.com/Ceres-Software-LJ/estancia-gaucha-j3a#readme"
+}

@@ -1,6 +1,6 @@
-# Assets pesados / temporários
-*.glb
-*.zip
-boilerplate-landing/
-abrir-site.bat
 node_modules/
+package-lock.json
+*.tmp.*
+Usersjoao-AppDataLocalTempimgout/
+package.json
+package-lock.json
