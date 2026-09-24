@@ -13,7 +13,9 @@
   <meta property="og:title" content="J3A Estância Gaúcha Cutelaria" />
   <meta property="og:description" content="O verdadeiro sabor e a tradição da Serra Gaúcha no coração de Campo Grande." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="J3A.webp" />
+  <link rel="canonical" href="https://www.cutelariaestanciagaucha.com.br" />
+  <meta property="og:url" content="https://www.cutelariaestanciagaucha.com.br" />
+  <meta property="og:image" content="https://www.cutelariaestanciagaucha.com.br/J3A.webp" />
   <meta property="og:image:alt" content="Logo J3A Estância Gaúcha Cutelaria" />
   <meta property="og:site_name" content="J3A Estância Gaúcha Cutelaria" />
   <meta property="og:locale" content="pt_BR" />
@@ -23,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="J3A Estância Gaúcha Cutelaria" />
   <meta name="twitter:description" content="Facas artesanais, queijos maturados, vinhos premiados e salames coloniais. Do RS para o MS." />
-  <meta name="twitter:image" content="J3A.png" />
+  <meta name="twitter:image" content="https://www.cutelariaestanciagaucha.com.br/J3A.webp" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="J3A.png" />
@@ -60,15 +62,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Sail&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- GSAP + ScrollTrigger + ScrollSmoother -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Preconnect CDN -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+
+  <!-- GSAP + ScrollTrigger (defer — non-blocking) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <!-- Font Awesome (non-blocking) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" /></noscript>
 
   <script>
     tailwind.config = {
@@ -652,7 +659,7 @@
 
     <!-- Logo esquerda -->
     <a href="#hero" class="flex-shrink-0" style="text-decoration:none;">
-      <img src="J3A.webp" alt="J3A Estância Gaúcha Cutelaria" class="h-[4.2rem] w-auto object-contain" />
+      <img src="J3A.webp" alt="J3A Estância Gaúcha Cutelaria" class="h-[4.2rem] w-auto object-contain" fetchpriority="high" />
     </a>
 
     <!-- Nav centro -->
@@ -2039,6 +2046,7 @@
 
 <!-- ── GSAP ScrollTrigger section transitions ─────────────────────────── -->
 <script>
+document.addEventListener('DOMContentLoaded', function () {
 (function () {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -2257,6 +2265,7 @@
   }
 
 })();
+}); // DOMContentLoaded
 </script>
 
 
