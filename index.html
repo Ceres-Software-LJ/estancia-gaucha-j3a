@@ -282,6 +282,9 @@
       object-position: center;
       opacity: 0.55;        /* opacidade do vídeo — ajuste aqui se quiser mais/menos */
     }
+    @media (max-width: 767px) {
+      .hero-video { display: none; }
+    }
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -847,6 +850,9 @@
   <div class="hero-fade-bottom" aria-hidden="true"></div>
 
 </section>
+<script>
+(function(){var h=document.getElementById('hero');if(!h)return;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('hero--loaded');}else{requestAnimationFrame(function(){requestAnimationFrame(function(){h.classList.add('hero--loaded');});});}})();
+</script>
 
 
 <!-- ═══════════════════════════════════════════════════
@@ -1999,15 +2005,6 @@
 <script>
 (function () {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── Phase 2: Hero entrance ────────────────────────── */
-  const heroEl = document.getElementById('hero');
-  if (heroEl && !reduced) {
-    // double-rAF: garante que o browser pinta o estado invisível antes de animar
-    requestAnimationFrame(() => requestAnimationFrame(() => heroEl.classList.add('hero--loaded')));
-  } else if (heroEl) {
-    heroEl.classList.add('hero--loaded');
-  }
 
   /* ── Phase 3: Word-split em títulos h2 ─────────────── */
   if (!reduced) {
